@@ -1,0 +1,2 @@
+[2018-09-26 13:31:45] request.INFO: Matched route "wod". {"route":"wod","route_parameters":{"_route":"wod","_controller":"App\\Controller\\WodController::index"},"request_uri":"http://localhost:8888/WODBOARD/public/","method":"GET"} []
+[2018-09-26 13:31:46] security.INFO: Populated the TokenStorage with an anonymous Token. [] []
