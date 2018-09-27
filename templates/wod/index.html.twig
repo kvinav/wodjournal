@@ -3,6 +3,58 @@
 {% block title %}Hello{% endblock %}
 
 {% block body %}
-<h1>Ajoute ton Wod</h1>
-    {{ form(form) }}
+<h1 style="text-align: center;">Ajoute ton Wod</h1>
+
+
+    <div class="card-body card-block">
+        {{ form_start(form, {'attr': {'class': 'form-horizontal', 'enctype': 'multipart/form-data'}}) }}
+            <div class="row form-group">
+                {{ form_errors(form.name) }}
+                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nom du WOD</label></div>
+                <div class="col-12 col-md-9">
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control', 'id': 'text-input', 'placeholder': 'Nom du WOD'}}) }}
+                </div>
+            </div>
+            <div class="row form-group">
+                {{ form_errors(form.work) }}
+                <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Workout</label></div>
+                <div class="col-12 col-md-9">
+                         {{ form_widget(form.work, {'attr': {'class': 'form-control', 'id': 'textarea-input', 'placeholder': 'Entrez le déroulement du workout', 'rows': '9'}}) }}
+                   </div>
+            </div>
+        <div class="row form-group">
+            {{ form_errors(form.weight) }}
+            <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Poids utilisés</label></div>
+            <div class="col-12 col-md-9">
+                {{ form_widget(form.weight, {'attr': {'class': 'form-control', 'id': 'textarea-input', 'placeholder': 'Entrez le poids et types de poids utilisés', 'rows': '9'}}) }}
+            </div>
+        </div>
+        <div class="row form-group">
+            {{ form_errors(form.comment) }}
+            <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Commentaire</label></div>
+            <div class="col-12 col-md-9">
+                {{ form_widget(form.comment, {'attr': {'class': 'form-control', 'id': 'textarea-input', 'placeholder': 'Entrez votre ressenti sur la séance', 'rows': '9'}}) }}
+            </div>
+        </div>
+        <div class="row form-group">
+            {{ form_errors(form.time) }}
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Temps effectué</label></div>
+            <div class="col-12 col-md-9"> {{ form_widget(form.time, {'attr': {'class': 'form-control', 'id': 'text-input', 'placeholder': 'Temps effectué'}}) }}
+            </div>
+        </div>
+        <div class="row form-group">
+            {{ form_errors(form.date) }}
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Date</label></div>
+            <div class="col-12 col-md-9"> {{ form_widget(form.date, {'attr': {'class': 'form-control', 'id': 'text-input', 'placeholder': 'Date'}}) }}        </div>
+
+    </div>
+        <div class="row form-group">
+                {{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-primary btn-sm'}}) }}
+
+        </div>
+
+
+
+
+    {{ form_end(form) }}
 {% endblock %}

@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Wod;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,11 +15,11 @@ class WodType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('work')
-            ->add('weight')
+            ->add('work', TextareaType::class)
+            ->add('weight', TextareaType::class)
             ->add('date')
             ->add('time')
-            ->add('comment')
+            ->add('comment', TextareaType::class)
             ->add('envoyer', SubmitType::class)
         ;
     }
