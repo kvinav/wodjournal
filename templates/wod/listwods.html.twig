@@ -3,15 +3,45 @@
 {% block title %}Hello{% endblock %}
 
 {% block body %}
-    <h1>Liste des Wods</h1>
+    <h2 style="text-align: center; margin-bottom: 30px;">Liste des Wods</h2>
     {% for wod in listWods %}
-     <ul>
-         <li>{{ wod.name }}</li>
-         <li>{{ wod.date }}</li>
-         <li>{{ wod.time }}</li>
-         <li>{{ wod.work }}</li>
-         <li>{{ wod.weight }}</li>
-         <li>{{ wod.comment }}</li>
-     </ul>
+        <div class="col-md-6">
+            <aside class="profile-nav alt">
+                <section class="card">
+                    <div class="card-header user-header alt bg-dark">
+                        <div class="media">
+                            {#
+                            <a href="#">
+                                <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
+                            </a>
+                            #}
+                            <div class="media-body">
+                                <h2 class="text-light display-6">  {{ wod.name }}</h2>
+                                <p>{{ wod.date }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                          <strong>Temps:</strong> {{ wod.time }}
+                        </li>
+                        <li class="list-group-item">
+                        <strong>Workout:</strong>{{ wod.work }}
+                        </li>
+                        <li class="list-group-item">
+                        <strong>Poids utilisés:</strong>{{ wod.weight }}
+                        </li>
+                        <li class="list-group-item">
+                        <strong>Commentaire:</strong>{{ wod.comment }}
+                        </li>
+                    </ul>
+
+                </section>
+            </aside>
+        </div>
+
+
     {% endfor %}
 {% endblock %}
