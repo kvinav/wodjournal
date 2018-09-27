@@ -5,15 +5,19 @@ parameters:
     # You should not need to change this value.
     env(DATABASE_URL): ''
 
+#dans le fichier doctrine.yaml
+
 doctrine:
     dbal:
         # configure these for your database server
         driver: 'pdo_mysql'
         server_version: '5.7'
         charset: utf8mb4
-        default_table_options:
-            charset: utf8mb4
-            collate: utf8mb4_unicode_ci
+        host: localhost
+        port: 8888
+        user: '%env(DATABASE_USER)%'
+        password: '%env(DATABASE_PWD)%'
+        dbname: '%env(DATABASE_NAME)%'
 
         url: '%env(resolve:DATABASE_URL)%'
     orm:

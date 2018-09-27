@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello{% endblock %}
+
+{% block body %}
+    <h1>Liste des Wods</h1>
+    {% for wod in listWods %}
+     <ul>
+         <li>{{ wod.name }}</li>
+         <li>{{ wod.date }}</li>
+         <li>{{ wod.time }}</li>
+         <li>{{ wod.work }}</li>
+         <li>{{ wod.weight }}</li>
+         <li>{{ wod.comment }}</li>
+     </ul>
+    {% endfor %}
+{% endblock %}
