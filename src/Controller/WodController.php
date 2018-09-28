@@ -19,7 +19,7 @@ class WodController extends AbstractController
         return $this->render('wod/home.html.twig');
     }
     /**
-     * @Route("/admin", name="wod")
+     * @Route("/journal/ajout-wod", name="wod")
      */
     public function index(Request $request)
     {
@@ -39,7 +39,7 @@ class WodController extends AbstractController
         ]);
     }
     /**
-     * @Route("/liste-wods", name="wods_list")
+     * @Route("/journal/liste-wods", name="wods_list")
      */
     public function listWods(Request $request)
     {

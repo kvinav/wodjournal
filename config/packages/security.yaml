@@ -29,16 +29,16 @@ security:
                 # Securisation des formulaires
                 csrf_token_generator: security.csrf.token_manager
                 # La page par defaut apres une connexion reussie
-                default_target_path: admin
+                default_target_path: wods_list
 
             logout:
                 # La route où se trouve le process de deconnexion
                 path: security_logout
                 # La route sur laquelle doit etre rediriger l'utilisateur apres une deconnexion
-                target: index
+                target: home
 
     access_control:
         # Les regles de securité
         # Là dans ce cas seul les utilisateurs ayant le rôle ROLE_ADMIN
         # peuvent acceder à toutes les pages commençant par /admin
-        - { path: '^/admin', roles: ROLE_ADMIN }
+        - { path: '^/journal', roles: ROLE_ADMIN }
