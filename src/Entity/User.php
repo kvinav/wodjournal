@@ -74,7 +74,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var array
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="array")
      */
     private $roles = [];
 
