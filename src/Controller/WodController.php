@@ -10,8 +10,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class WodController extends AbstractController
 {
+
     /**
-     * @Route("/", name="wod")
+     * @Route("/", name="home")
+     */
+    public function home()
+    {
+        return $this->render('wod/home.html.twig');
+    }
+    /**
+     * @Route("/admin", name="wod")
      */
     public function index(Request $request)
     {
