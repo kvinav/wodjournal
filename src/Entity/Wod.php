@@ -45,6 +45,14 @@ class Wod
      * @ORM\Column(type="text", nullable=true)
      */
     private $comment;
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $userId;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $userFullName;
 
     public function getId(): ?int
     {
@@ -119,6 +127,28 @@ class Wod
     public function setComment(?string $comment): self
     {
         $this->comment = $comment;
+
+        return $this;
+    }
+    public function getUserId(): ?int
+    {
+        return $this->userId;
+    }
+
+    public function setUserId(?int $userId): self
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+    public function getUserFullName(): ?string
+    {
+        return $this->userFullName;
+    }
+
+    public function setUserFullName(?string $userFullName): self
+    {
+        $this->userFullName = $$this->userFullName;
 
         return $this;
     }

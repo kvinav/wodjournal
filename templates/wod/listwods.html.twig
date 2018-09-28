@@ -25,16 +25,20 @@
 
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                          <strong>Temps:</strong> {{ wod.time }}
+                          <strong>Temps:</strong> <br />
+                            {{ wod.time }}
                         </li>
                         <li class="list-group-item">
-                        <strong>Workout:</strong>{{ wod.work }}
+                        <strong>Workout:</strong><br />
+                            {{ wod.work|raw }}
                         </li>
                         <li class="list-group-item">
-                        <strong>Poids utilisés:</strong>{{ wod.weight }}
+                        <strong>Poids utilisés:</strong><br />
+                            {{ wod.weight|raw }}
                         </li>
                         <li class="list-group-item">
-                        <strong>Commentaire:</strong>{{ wod.comment }}
+                        <strong>Commentaire:</strong><br />
+                            {{ wod.comment|raw }}
                         </li>
                     </ul>
 

@@ -19,21 +19,21 @@
                 {{ form_errors(form.work) }}
                 <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Workout</label></div>
                 <div class="col-12 col-md-9">
-                         {{ form_widget(form.work, {'attr': {'class': 'form-control', 'id': 'textarea-input', 'placeholder': 'Entrez le déroulement du workout', 'rows': '9'}}) }}
+                         {{ form_widget(form.work, {'attr': {'class': 'form-control ckeditor', 'id': 'textarea-input', 'placeholder': 'Entrez le déroulement du workout', 'rows': '9'}}) }}
                    </div>
             </div>
         <div class="row form-group">
             {{ form_errors(form.weight) }}
             <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Poids utilisés</label></div>
             <div class="col-12 col-md-9">
-                {{ form_widget(form.weight, {'attr': {'class': 'form-control', 'id': 'textarea-input', 'placeholder': 'Entrez le poids et types de poids utilisés', 'rows': '9'}}) }}
+                {{ form_widget(form.weight, {'attr': {'class': 'form-control ckeditor', 'id': 'textarea-input', 'placeholder': 'Entrez le poids et types de poids utilisés', 'rows': '9'}}) }}
             </div>
         </div>
         <div class="row form-group">
             {{ form_errors(form.comment) }}
             <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Commentaire</label></div>
             <div class="col-12 col-md-9">
-                {{ form_widget(form.comment, {'attr': {'class': 'form-control', 'id': 'textarea-input', 'placeholder': 'Entrez votre ressenti sur la séance', 'rows': '9'}}) }}
+                {{ form_widget(form.comment, {'attr': {'class': 'form-control ckeditor', 'id': 'textarea-input', 'placeholder': 'Entrez votre ressenti sur la séance', 'rows': '9'}}) }}
             </div>
         </div>
         <div class="row form-group">

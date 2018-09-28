@@ -16,7 +16,13 @@ class WodController extends AbstractController
      */
     public function home()
     {
-        return $this->render('wod/home.html.twig');
+        $listWods = $this->getDoctrine()
+            ->getRepository(Wod::class)
+            ->findAll();
+
+        return $this->render('wod/home.html.twig', array(
+            'listWods' => $listWods,
+        ));
     }
     /**
      * @Route("/journal/ajout-wod", name="wod")
@@ -29,8 +35,12 @@ class WodController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $user = $this->getUser();
+            $id = $user->getId();
+            $fullName = $user->getFullName();
             $wod = $form->getData();
+            $wod->setUserId($id);
+            $wod->setUserFullName($fullName);
             $em->persist($wod);
             $em->flush();
         }
@@ -44,9 +54,12 @@ class WodController extends AbstractController
     public function listWods(Request $request)
     {
 
+        $user = $this->getUser();
+        $id = $user->getId();
+
         $listWods = $this->getDoctrine()
             ->getRepository(Wod::class)
-            ->findAll();
+            ->findBy(array('userId' => $id));
 
         return $this->render('wod/listwods.html.twig', [
             'listWods' => $listWods,
