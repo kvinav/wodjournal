@@ -182,6 +182,7 @@ aside.left-panel {
     .navbar-nav {
         float: none;
         position: relative;
+        padding-left: 30px!important;
         li {
             width: 100%;
             &.active .menu-icon,
@@ -1731,6 +1732,7 @@ header .form-inline {
             .menu-title {
                 line-height: 30px;
                 padding: 0;
+                margin-left: 20px;
             }
         }
     }

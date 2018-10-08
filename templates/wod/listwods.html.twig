@@ -3,12 +3,17 @@
 {% block title %}Hello{% endblock %}
 
 {% block body %}
+    {% if app.request.attributes.get('_route') == 'todo_list' %}
+        <h2 style="text-align: center; margin-bottom: 30px;">Wods à faire</h2>
+    {% else %}
     <h2 style="text-align: center; margin-bottom: 30px;">Liste des Wods</h2>
+
+    {% endif %}
     {% for wod in listWods %}
         <div class="col-md-6">
             <aside class="profile-nav alt">
                 <section class="card">
-                    <div class="card-header user-header alt bg-dark">
+                    <div class="card-header user-header alt bg-secondary">
                         <div class="media">
                             {#
                             <a href="#">
@@ -17,7 +22,7 @@
                             #}
                             <div class="media-body">
                                 <h2 class="text-light display-6">  {{ wod.name }}</h2>
-                                <p>{{ wod.date }}</p>
+                                <p style="color: whitesmoke;">{{ wod.date }}</p>
                             </div>
                         </div>
                     </div>
@@ -40,6 +45,21 @@
                         <strong>Commentaire:</strong><br />
                             {{ wod.comment|raw }}
                         </li>
+
+                            {% if app.request.attributes.get('_route') == 'todo_list' %}
+                        <li class="list-group-item">
+                            <strong>Action:</strong><br />
+                                <a href="{{ path('wod', {'name': wod.name, 'workout': wod.work, 'weights': wod.weight}) }}"><button class="btn btn-success">J'ai fait ce WOD</button></a>
+                        </li>
+                            {% elseif app.request.attributes.get('_route') == 'wods_list'%}
+                               {% else %}
+                        <li class="list-group-item">
+                            <strong>Action:</strong><br />
+                                <a href="{{ path('wod', {'name': wod.name, 'workout': wod.work, 'weights': wod.weight}) }}"><button class="btn btn-success">J'ai fait ce WOD</button></a>
+                                <a href="{{ path('add_todolist', {'wodId': wod.id}) }}"><button class="btn btn-primary">A faire plus tard</button></a>
+                        </li>
+                            {% endif %}
+
                     </ul>
 
                 </section>

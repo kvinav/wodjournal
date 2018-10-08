@@ -12,21 +12,21 @@
                 {{ form_errors(form.name) }}
                 <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nom du WOD</label></div>
                 <div class="col-12 col-md-9">
-                    {{ form_widget(form.name, {'attr': {'class': 'form-control', 'id': 'text-input', 'placeholder': 'Nom du WOD'}}) }}
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control', 'id': 'text-input', 'placeholder': 'Nom du WOD', 'value': app.request.query.get('name')}}) }}
                 </div>
             </div>
             <div class="row form-group">
                 {{ form_errors(form.work) }}
                 <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Workout</label></div>
                 <div class="col-12 col-md-9">
-                         {{ form_widget(form.work, {'attr': {'class': 'form-control ckeditor', 'id': 'textarea-input', 'placeholder': 'Entrez le déroulement du workout', 'rows': '9'}}) }}
+                         {{ form_widget(form.work, {'attr': {'class': 'form-control ckeditor', 'id': 'textarea-input', 'placeholder': 'Entrez le déroulement du workout', 'rows': '9', 'value': app.request.query.get('workout')}}) }}
                    </div>
             </div>
         <div class="row form-group">
             {{ form_errors(form.weight) }}
             <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Poids utilisés</label></div>
             <div class="col-12 col-md-9">
-                {{ form_widget(form.weight, {'attr': {'class': 'form-control ckeditor', 'id': 'textarea-input', 'placeholder': 'Entrez le poids et types de poids utilisés', 'rows': '9'}}) }}
+                {{ form_widget(form.weight, {'attr': {'class': 'form-control ckeditor', 'id': 'textarea-input', 'placeholder': 'Entrez le poids et types de poids utilisés', 'rows': '9', 'value': app.request.query.get('weights')}}) }}
             </div>
         </div>
         <div class="row form-group">
@@ -45,7 +45,7 @@
         <div class="row form-group">
             {{ form_errors(form.date) }}
             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Date</label></div>
-            <div class="col-12 col-md-9"> {{ form_widget(form.date, {'attr': {'class': 'form-control', 'id': 'text-input', 'placeholder': 'Date'}}) }}        </div>
+            <div class="col-12 col-md-9"> {{ form_widget(form.date, {'attr': {'class': 'form-control', 'id': 'text-input datepicker', 'placeholder': 'Date'}}) }}        </div>
 
     </div>
         <div class="row form-group">

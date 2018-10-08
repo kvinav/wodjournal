@@ -148,7 +148,7 @@ class Wod
 
     public function setUserFullName(?string $userFullName): self
     {
-        $this->userFullName = $$this->userFullName;
+        $this->userFullName = $this->userFullName;
 
         return $this;
     }

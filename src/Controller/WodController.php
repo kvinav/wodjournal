@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Todo;
 use App\Entity\Wod;
 use App\Form\WodType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,8 +19,7 @@ class WodController extends AbstractController
     {
         $listWods = $this->getDoctrine()
             ->getRepository(Wod::class)
-            ->findAll();
-
+            ->findBy(array(), array('id' => 'desc'));
         return $this->render('wod/home.html.twig', array(
             'listWods' => $listWods,
         ));
@@ -59,8 +59,44 @@ class WodController extends AbstractController
 
         $listWods = $this->getDoctrine()
             ->getRepository(Wod::class)
-            ->findBy(array('userId' => $id));
+            ->findBy(array('userId' => $id), array('id' => 'desc'));
 
+        return $this->render('wod/listwods.html.twig', [
+            'listWods' => $listWods,
+        ]);
+    }
+    /**
+     * @Route("/journal/ajout-todo", name="add_todolist")
+     */
+    public function addWodToList(Request $request)
+    {
+
+        $user = $this->getUser();
+        $todo = new Todo();
+        $em = $this->getDoctrine()->getManager();
+        $todo->setUserId($user->getId());
+        $todo->setWodId($request->query->get('wodId'));
+        $em->persist($todo);
+        $em->flush();
+        return $this->redirectToRoute('home');
+    }
+    /**
+     * @Route("/journal/ma-liste", name="todo_list")
+     */
+    public function toDoList(Request $request)
+    {
+
+        $user = $this->getUser();
+        $todos = $this->getDoctrine()
+            ->getRepository(Todo::class)
+            ->findBy(array('userId' => $user->getId()));
+        $listWods = array();
+        foreach ($todos as $todo) {
+
+            $listWods[] = ($this->getDoctrine()
+                ->getRepository(Wod::class)
+                ->findBy(array('id' => $todo->getWodId())))[0];
+        }
         return $this->render('wod/listwods.html.twig', [
             'listWods' => $listWods,
         ]);

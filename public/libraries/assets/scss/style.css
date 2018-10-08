@@ -792,7 +792,8 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0; }
+  margin: 0;
+  margin-top: 20px;}
 
 ul,
 ol {
@@ -835,7 +836,7 @@ aside.left-panel {
   transition: width 0.3s ease; }
 
 .navbar {
-  background: #272c33;
+  background: linear-gradient(to left, #48c6ef, #6f86d6);
   border-radius: 0;
   border: none;
   display: block;
@@ -843,12 +844,13 @@ aside.left-panel {
   margin-bottom: 100px;
   padding: 0; }
   .navbar .navbar-header {
+    background: linear-gradient(to left, #48c6ef, #6f86d6);
     float: none;
     text-align: center;
     width: 100%; }
   .navbar .navbar-brand {
-    border-bottom: 1px solid #4e4e52;
-    color: #f1f2f7 !important;
+    border-bottom: 1px solid #6f86d6;
+    color: white !important;
     font-family: 'Open Sans';
     font-size: 22px;
     float: none;
@@ -870,8 +872,8 @@ aside.left-panel {
     .navbar .navbar-brand.hidden {
       display: none; }
   .navbar .menu-title {
-    border-bottom: 1px solid #4e4e52;
-    color: #9496a1;
+    border-bottom: 1px solid #6f86d6;
+    color: white;
     clear: both;
     display: block;
     font-family: 'Open Sans';
@@ -882,9 +884,11 @@ aside.left-panel {
     text-transform: uppercase;
     width: 100%; }
   .navbar .navbar-nav {
+    padding-left: 30px;
     float: none;
     position: relative; }
     .navbar .navbar-nav li {
+      padding-left: 20px;
       width: 100%; }
       .navbar .navbar-nav li.active .menu-icon, .navbar .navbar-nav li:hover .toggle_nav_button:before,
       .navbar .navbar-nav li .toggle_nav_button.nav-open:before {
@@ -893,7 +897,7 @@ aside.left-panel {
         display: none; }
       .navbar .navbar-nav li > a {
         background: none !important;
-        color: #c8c9ce !important;
+        color: white !important;
         display: inline-block;
         font-family: 'Open Sans';
         font-size: 14px;
@@ -902,9 +906,9 @@ aside.left-panel {
         position: relative;
         width: 100%; }
         .navbar .navbar-nav li > a:hover, .navbar .navbar-nav li > a:hover .menu-icon {
-          color: #fff !important; }
+          color: white !important; }
         .navbar .navbar-nav li > a .menu-icon {
-          color: #8b939b;
+          color: white;
           float: left;
           margin-top: 8px;
           width: 55px;
@@ -2149,10 +2153,11 @@ header .form-inline {
     display: block; }
 
   aside.left-panel {
+    padding-left: 0px;
+    padding-right: 0px;
     display: block;
     height: auto;
     min-height: inherit;
-    padding: 0 15px;
     width: 100%; }
     aside.left-panel .navbar {
       margin-bottom: 0; }

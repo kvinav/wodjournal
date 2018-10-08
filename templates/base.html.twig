@@ -41,26 +41,35 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="./"><img src="{{ asset('libraries/images/logo.png') }}" alt="Logo"></a>
-            <a class="navbar-brand hidden" href="./"><img src="{{ asset('libraries/images/logo2.png') }}" alt="Logo"></a>
+            <a class="navbar-brand" href="{{ path('home') }}"><i class="menu-icon fa fa-home" style="margin-right: 5px;"></i>My Wod Journal</a>
+            <a class="navbar-brand hidden" href="./">MWJ</a>
         </div>
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <h3 class="menu-title">Menu</h3><!-- /.menu-title -->
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="menu-item-has-children dropdown">
+                        <a href="{{ path('home') }}"> <i class="menu-icon fa fa-group"></i>Communauté</a>
+                    </li>
                 <li class="menu-item-has-children dropdown">
-                    <a href="{{ path('wods_list') }}"> <i class="menu-icon fa fa-list-ul"></i>Mes WODs</a>
+                    <a href="{{ path('wods_list') }}"> <i class="menu-icon fa fa-check-circle-o"></i>Mes WODs</a>
                 </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="{{ path('wod') }}"> <i class="menu-icon fa fa-plus"></i>Ajouter un WOD</a>
                 </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="{{ path('security_logout') }}"> <i class="menu-icon fa fa-plus"></i>Se déconnecter</a>
+                        <a href="{{ path('todo_list') }}"> <i class="menu-icon fa fa-list-ul"></i>Wod à faire</a>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="{{ path('security_logout') }}"> <i class="menu-icon fa fa-power-off"></i>Se déconnecter</a>
                     </li>
                 {% else %}
+                    <li class="menu-item-has-children dropdown">
+                        <a href="{{ path('home') }}"> <i class="menu-icon fa fa-group"></i>Communauté</a>
+                    </li>
                 <li class="menu-item-has-children dropdown">
-                <a href="{{ path('security_login') }}"> <i class="menu-icon fa fa-plus"></i>Se connecter</a>
+                <a href="{{ path('security_login') }}"> <i class="menu-icon fa  fa-power-off"></i>Se connecter</a>
                 </li>
                 {% endif %}
             </ul>
@@ -163,6 +172,10 @@
         $jq('textarea.ckeditor').ckeditor();
     });
 </script>
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 
 </body>

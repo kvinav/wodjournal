@@ -42,6 +42,11 @@
                             <strong>Commentaire:</strong><br />
                             {{ wod.comment|raw }}
                         </li>
+                        <li class="list-group-item">
+                            <strong>Action:</strong><br />
+                            <a href="{{ path('add_todolist', {'wodId': wod.id}) }}"><button class="btn btn-primary">A faire plus tard</button></a>
+                            <a href="{{ path('wod', {'name': wod.name, 'workout': wod.work, 'weights': wod.weight}) }}"><button class="btn btn-success">J'ai fait ce WOD</button></a>
+                        </li>
                     </ul>
 
                 </section>
