@@ -1,0 +1,21 @@
+{
+  "short_name": "MWJ",
+  "name": "My Wod Journal",
+  "icons": [
+    {
+      "src": "/mywodjournal/public/libraries/images/android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/mywodjournal/public/libraries/images/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/mywodjournal/public/index.php",
+  "background_color": "#fff",
+  "display": "fullscreen",
+  "scope": "/mywodjournal/public/index.php",
+  "theme_color": "#fff"
+}

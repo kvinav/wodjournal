@@ -114,11 +114,10 @@ textarea {
     width: 100%;
 }
 aside.left-panel {
-    background: $menu-bg;
+    background: linear-gradient(to left, #48c6ef, #6f86d6);
     display: table-cell;
     height: 100vh;
     min-height: 100%;
-    padding: 0 25px;
     vertical-align: top;
     width: 280px;
     transition: width 0.3s ease;
