@@ -19,7 +19,10 @@
                 {{ form_errors(form.work) }}
                 <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Workout</label></div>
                 <div class="col-12 col-md-9">
-                         {{ form_widget(form.work, {'attr': {'class': 'form-control ckeditor', 'id': 'textarea-input', 'placeholder': 'Entrez le déroulement du workout', 'rows': '9', 'value': app.request.query.get('workout')}}) }}
+                         {{ form_widget(form.work, {'attr': {'class': 'form-control ckeditor', 'id': 'textarea-input', 'placeholder': 'Entrez le déroulement du workout', 'rows': '9'}}) }} 
+                   </div>
+                   <div style="display: none;" id="workout_value">
+                    {{ app.request.query.get('workout')|raw }}
                    </div>
             </div>
         <div class="row form-group">
@@ -27,6 +30,9 @@
             <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Poids utilisés</label></div>
             <div class="col-12 col-md-9">
                 {{ form_widget(form.weight, {'attr': {'class': 'form-control ckeditor', 'id': 'textarea-input', 'placeholder': 'Entrez le poids et types de poids utilisés', 'rows': '9', 'value': app.request.query.get('weights')}}) }}
+            </div>
+            <div style="display: none;" id="weights_value">
+                    {{ app.request.query.get('weights')|raw }}
             </div>
         </div>
         <div class="row form-group">
@@ -57,4 +63,5 @@
 
 
     {{ form_end(form) }}
+    
 {% endblock %}

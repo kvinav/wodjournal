@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bienvenue sur My WOD Journal</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+      $(function(){
+        
+          $(window).resize(function(){
+            var parallaxHeight = Math.max($(window).height() * 0.7, 200) | 0;
+            $('.parallax-container').height(parallaxHeight);
+          }).trigger('resize');
+        
+      });
+    </script>
+  </head>
+  <body>
+
+    <div class="parallax-container" data-parallax="scroll" data-position="top" data-bleed="10" data-image-src="{{ asset('libraries/images/background1filtered.jpg') }}" data-natural-width="1400" data-natural-height="900"></div>
+
+    <section>
+      <div class="container">
+        </div>
+    </section>
+
+    <div class="parallax-container" data-parallax="scroll" data-bleed="10" data-speed="0.2" data-image-src="{{ asset('libraries/images/background3filtered.jpg') }}" data-natural-width="1700" data-natural-height="1400" style="opacity: 0.5;"></div>
+
+    <section>
+      <div class="container">
+       
+      </div>
+    </section>
+
+    <footer>
+      
+    </footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="{{ asset('parallax/parallax.js') }}"></script>
+  </body>
+</html>

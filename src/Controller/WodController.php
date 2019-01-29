@@ -17,6 +17,13 @@ class WodController extends AbstractController
      */
     public function home()
     {
+        return $this->render('index.html.twig');
+    }
+    /**
+     * @Route("/community", name="community")
+     */
+    public function community()
+    {
         $listWods = $this->getDoctrine()
             ->getRepository(Wod::class)
             ->findBy(array(), array('id' => 'desc'));

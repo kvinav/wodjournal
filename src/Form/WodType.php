@@ -16,17 +16,11 @@ class WodType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('work', TextareaType::class, array(
-                'attr' => array('class' => 'ckeditor')
-            ))
-            ->add('weight', TextareaType::class, array(
-                'attr' => array('class' => 'ckeditor')
-            ))
+            ->add('work', TextareaType::class)
+            ->add('weight', TextareaType::class)
             ->add('date')
             ->add('time')
-            ->add('comment', TextareaType::class, array(
-                'attr' => array('class' => 'ckeditor')
-            ))
+            ->add('comment', TextareaType::class)
             ->add('envoyer', SubmitType::class)
         ;
     }
