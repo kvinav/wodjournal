@@ -6,6 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bienvenue sur My WOD Journal</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
+	<style>
+		p, h1 {
+			font-family: 'Open Sans', sans-serif;
+		}
+	</style>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
       $(function(){
@@ -18,28 +26,69 @@
       });
     </script>
   </head>
-  <body>
+  <body style="background-color: black;">
+	
+    <div class="parallax-container" data-parallax="scroll" data-position="top" data-bleed="10" data-image-src="{{ asset('libraries/images/background1filtered.jpg') }}" data-natural-width="1400" data-natural-height="900" style="font-size: 40px; text-align: center; color:white; padding-top: 20%;">
+      		Bienvenue sur My WOD Journal<br />
 
-    <div class="parallax-container" data-parallax="scroll" data-position="top" data-bleed="10" data-image-src="{{ asset('libraries/images/background1filtered.jpg') }}" data-natural-width="1400" data-natural-height="900"></div>
-
-    <section>
-      <div class="container">
-        </div>
-    </section>
-
-    <div class="parallax-container" data-parallax="scroll" data-bleed="10" data-speed="0.2" data-image-src="{{ asset('libraries/images/background3filtered.jpg') }}" data-natural-width="1700" data-natural-height="1400" style="opacity: 0.5;"></div>
-
-    <section>
-      <div class="container">
-       
       </div>
-    </section>
 
-    <footer>
-      
-    </footer>
+    <div class="parallax-container" data-parallax="scroll" data-bleed="10" data-speed="0.1" data-image-src="{{ asset('libraries/images/background3filtered.jpg') }}" data-natural-width="1700" data-natural-height="1400" style="text-align: center; font-size: 30px; padding-top: 10%;">
+    	Retrouvez les entrainements de toute la communauté et partagez les vôtres. <br /><br /><br /><i class="fas fa-arrow-circle-down fa-lg"></i>
+    </div>
+
+    <div class="parallax-container" data-parallax="scroll" data-position="top" data-bleed="10" data-image-src="{{ asset('libraries/images/background1filtered.jpg') }}" data-natural-width="1400" data-natural-height="900"  style="text-align: center; font-size: 30px; padding-top: 10%; color:white; padding-right: 30%; padding-left:30%;">
+    	On a tous connu la routine et le manque d'inspiration, alors aidez les autres à innover et laissez les vous inspirer !
+    </div>
+        
+<div id="button" style="position: fixed; text-align: center;bottom: 100px; width: 100%;">
+	<a href="#" style="text-align: center; text-decoration: none; color: black;"><button style="width: 200px; height: 50px; background-color: lightgray; font-size: 24px; margin-right: 100px;">Je visite</button></a>
+	<a href="#" style="text-align: center; text-decoration: none; color: black;"><button style="width: 200px; height: 50px; background-color: lightgray; font-size: 24px;">Je m'inscris</button></a>
+</div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+	// Hide Header on on scroll down
+var didScroll;
+var lastScrollTop = 0;
+var delta = 5;
+var navbarHeight = $('#test').outerHeight();
+
+$(window).scroll(function(event){
+    didScroll = true;
+});
+
+setInterval(function() {
+    if (didScroll) {
+        hasScrolled();
+        didScroll = false;
+    }
+}, 250);
+
+function hasScrolled() {
+    var st = $(this).scrollTop();
+    
+    // Make sure they scroll more than delta
+    if(Math.abs(lastScrollTop - st) <= delta)
+        return;
+    
+    // If they scrolled down and are past the navbar, add class .nav-up.
+    // This is necessary so you never see what is "behind" the navbar.
+    if (st > lastScrollTop && st > navbarHeight){
+        // Scroll Down
+        $('#button').fadeOut();
+    } else {
+        // Scroll Up
+        if(st + $(window).height() < $(document).height()) {
+            $('#button').fadeIn();
+        }
+    }
+    
+    lastScrollTop = st;
+}
+</script>
+
 <script src="{{ asset('parallax/parallax.js') }}"></script>
   </body>
 </html>
