@@ -4,9 +4,9 @@
 
 {% block body %}
 <h2 style="text-align: center;">Communauté</h2><br />
-<p>Découvrez les entrainement des autres membres de la communauté</p><br />
+<p style="text-align: center; font-size: 20px;">Découvrez les entrainement des autres membres de la communauté</p><br />
     {% for wod in listWods %}
-        <div class="col-md-6">
+        <div class="col-md-8 offset-2">
             <aside class="profile-nav alt">
                 <section class="card">
                     <div class="card-header user-header alt bg-dark">
@@ -17,8 +17,8 @@
                             </a>
                             #}
                             <div class="media-body">
-                                <h2 class="text-light display-6">  {{ wod.name }}</h2>
-                                <i>effectué par {{ wod.userFullName }}</i>
+                                <h2 class="text-light display-6">  {{ wod.name|upper }}</h2>
+                                <i style="color: #6f86d6;">effectué par {{ wod.username }}</i>
                                 <p>{{ wod.date }}</p>
                             </div>
                         </div>

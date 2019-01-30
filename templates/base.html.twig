@@ -34,7 +34,15 @@
     <link rel="stylesheet" href="{{  asset('libraries/assets/scss/style.css') }}">
     <link href="{{  asset('libraries/assets/css/lib/vector-map/jqvmap.min.css') }}" rel="stylesheet">
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        p, h1 {
+            font-family: 'Open Sans', sans-serif;
+        }
+    </style>
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
@@ -59,26 +67,26 @@
             <ul class="nav navbar-nav">
                 <h3 class="menu-title">Menu</h3><!-- /.menu-title -->
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li class="menu-item-has-children dropdown">
+                    <li class="">
                         <a href="{{ path('community') }}"> <i class="menu-icon fa fa-group"></i>Communauté</a>
                     </li>
-                <li class="menu-item-has-children dropdown">
+                <li class="">
                     <a href="{{ path('wods_list') }}"> <i class="menu-icon fa fa-check-circle-o"></i>Mes entrainements</a>
                 </li>
-                <li class="menu-item-has-children dropdown">
+                <li class="">
                     <a href="{{ path('wod') }}"> <i class="menu-icon fa fa-plus"></i>Ajouter un entrainement</a>
                 </li>
-                    <li class="menu-item-has-children dropdown">
+                    <li class="">
                         <a href="{{ path('todo_list') }}"> <i class="menu-icon fa fa-list-ul"></i>Entrainements à faire</a>
                     </li>
-                    <li class="menu-item-has-children dropdown">
+                    <li class="">
                         <a href="{{ path('security_logout') }}"> <i class="menu-icon fa fa-power-off"></i>Se déconnecter</a>
                     </li>
                 {% else %}
-                    <li class="menu-item-has-children dropdown">
+                    <li class="">
                         <a href="{{ path('home') }}"> <i class="menu-icon fa fa-group"></i>Communauté</a>
                     </li>
-                <li class="menu-item-has-children dropdown">
+                <li class="">
                 <a href="{{ path('security_login') }}"> <i class="menu-icon fa  fa-power-off"></i>Se connecter</a>
                 </li>
                 {% endif %}

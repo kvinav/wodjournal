@@ -9,7 +9,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/login", name="security_login")
+     * @Route("/connexion", name="security_login")
      */
     public function login(AuthenticationUtils $helper): Response
     {
@@ -27,7 +27,7 @@ class SecurityController extends AbstractController
      * Mais celle ci ne doit jamais être executé car symfony l'interceptera avant.
      *
      *
-     * @Route("/logout", name="security_logout")
+     * @Route("/deconnexion", name="security_logout")
      */
     public function logout(): void
     {

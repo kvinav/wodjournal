@@ -52,7 +52,7 @@ class Wod
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $userFullName;
+    private $username;
 
     public function getId(): ?int
     {
@@ -141,14 +141,14 @@ class Wod
 
         return $this;
     }
-    public function getUserFullName(): ?string
+    public function getUsername(): ?string
     {
-        return $this->userFullName;
+        return $this->username;
     }
 
-    public function setUserFullName(?string $userFullName): self
+    public function setUsername(?string $username): self
     {
-        $this->userFullName = $this->userFullName;
+        $this->username = $username;
 
         return $this;
     }

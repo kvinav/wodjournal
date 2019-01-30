@@ -27,6 +27,7 @@ class WodController extends AbstractController
         $listWods = $this->getDoctrine()
             ->getRepository(Wod::class)
             ->findBy(array(), array('id' => 'desc'));
+
         return $this->render('wod/home.html.twig', array(
             'listWods' => $listWods,
         ));
@@ -44,10 +45,10 @@ class WodController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->getUser();
             $id = $user->getId();
-            $fullName = $user->getFullName();
+            $username = $user->getUsername();
             $wod = $form->getData();
+            $wod->setUsername($username);
             $wod->setUserId($id);
-            $wod->setUserFullName($fullName);
             $em->persist($wod);
             $em->flush();
         }
@@ -85,7 +86,7 @@ class WodController extends AbstractController
         $todo->setWodId($request->query->get('wodId'));
         $em->persist($todo);
         $em->flush();
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('community');
     }
     /**
      * @Route("/journal/ma-liste", name="todo_list")

@@ -22,7 +22,12 @@
     <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less') }}'"> -->
     <link rel="stylesheet" href="{{ asset('libraries/assets/scss/style.css') }}">
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+    </style>
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
@@ -40,11 +45,12 @@
         <div class="login-content">
             <div class="login-logo">
                 <a href="index.html">
-                    My Wod Journal - inscription
+                    
                 </a>
             </div>
             
             <div class="login-form">
+                <h3 style="text-align: center; padding-bottom: 40px;">My Wod Journal - inscription</h3>
                 {{ form_start(form, {'attr': {'class': 'form-horizontal', 'enctype': 'multipart/form-data'}}) }}
             <div class="row form-group">
                 {{ form_errors(form.fullName) }}
@@ -55,7 +61,7 @@
             </div>
             <div class="row form-group">
                 {{ form_errors(form.username) }}
-                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nom d'utilisateur</label></div>
+                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Pseudo</label></div>
                 <div class="col-12 col-md-9">
                     {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
                 </div>
@@ -82,7 +88,7 @@
                 </div>
             </div>
 
-<button type="submit"  class="btn btn-success btn-flat m-b-30 m-t-30">S'inscrire !</button>
+<button type="submit"  class="btn btn-success btn-flat m-b-30 m-t-30" style="background: linear-gradient(to left, #48c6ef, #6f86d6)!important;">S'inscrire !</button>
 {{ form_end(form) }}
             </div>
         </div>
