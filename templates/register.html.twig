@@ -1,105 +1,75 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My Wod Journal</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
 
-    <link rel="apple-touch-icon" href="{{ asset('libraries/apple-icon.png') }}">
-    <link rel="shortcut icon" href="{{ asset('libraries/favicon.ico') }}">
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
-    <link rel="stylesheet" href="{{ asset('libraries/assets/css/normalize.css') }}">
-    <link rel="stylesheet" href="{{ asset('libraries/assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('libraries/assets/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('libraries/assets/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('libraries/assets/css/flag-icon.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('libraries/assets/css/cs-skin-elastic.css') }}">
-    <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less') }}'"> -->
-    <link rel="stylesheet" href="{{ asset('libraries/assets/scss/style.css') }}">
-
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-        }
-    </style>
-
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
-
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{ asset('libraries/template3/css/style.css') }}">
 </head>
-<body class="bg-dark">
+<body>
 
-{% if error %}
-    <div class="alert alert-danger">
-        {{ error.messageKey }}
-    </div>
-{% endif %}
-
-<div class="sufee-login d-flex align-content-center flex-wrap">
-    <div class="container">
-        <div class="login-content">
-            <div class="login-logo">
-                <a href="index.html">
-                    
-                </a>
-            </div>
-            
-            <div class="login-form">
-                <h3 style="text-align: center; padding-bottom: 40px;">My Wod Journal - inscription</h3>
-                {{ form_start(form, {'attr': {'class': 'form-horizontal', 'enctype': 'multipart/form-data'}}) }}
-            <div class="row form-group">
-                {{ form_errors(form.fullName) }}
-                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nom/prénom</label></div>
-                <div class="col-12 col-md-9">
-                    {{ form_widget(form.fullName, {'attr': {'class': 'form-control'}}) }}
+    <div class="main">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <img src="{{ asset('libraries/template3/images/signup-img2.png') }}" alt="">
                 </div>
-            </div>
-            <div class="row form-group">
-                {{ form_errors(form.username) }}
-                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Pseudo</label></div>
-                <div class="col-12 col-md-9">
-                    {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                <div class="signup-form">
+                     {{ form_start(form, {'attr': {'class': 'register-form','id': 'register-form', 'enctype': 'multipart/form-data'}}) }}
+                        <h2>INSCRIPTION</h2>
+                            <div class="form-group">
+                                {{ form_errors(form.fullName) }}
+                              <label for="text-input" class=" form-control-label">Nom/prénom</label>
+                                
+                                {{ form_widget(form.fullName, {'attr': {'class': 'form-control'}}) }}
+                                
+                            </div>
+                            <div class="form-group">
+                                {{ form_errors(form.username) }}
+                             <label for="text-input" class=" form-control-label">Pseudo</label>
+                                
+                                {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                                
+                            </div>
+                            <div class="form-group">
+                                {{ form_errors(form.email) }}
+                             <label for="text-input" class=" form-control-label">Email</label>
+                                
+                                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                                
+                            </div>
+                            <div class="form-group">
+                                {{ form_errors(form.password.first) }}
+                             <label for="text-input" class=" form-control-label">Mot de passe</label>
+                                
+                                {{ form_widget(form.password.first, {'attr': {'class': 'form-control'}}) }}
+                                
+                            </div>
+                            <div class="form-group">
+                                {{ form_errors(form.password.second) }}
+                             <label for="text-input" class=" form-control-label">Confirmer</label>
+                                
+                                    {{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
+                                
+                            </div>
+                            <div class="form-submit">
+                            <input type="submit" value="JE M'INSCRIS" class="submit" name="submit" id="submit"  style="background: linear-gradient(to left, #48c6ef, #6f86d6)!important;"/>
+                            </div>
+                        {{ form_end(form) }}
                 </div>
-            </div>
-            <div class="row form-group">
-                {{ form_errors(form.email) }}
-                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Email</label></div>
-                <div class="col-12 col-md-9">
-                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
-                </div>
-            </div>
-            <div class="row form-group">
-                {{ form_errors(form.password.first) }}
-                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Mot de passe</label></div>
-                <div class="col-12 col-md-9">
-                    {{ form_widget(form.password.first, {'attr': {'class': 'form-control'}}) }}
-                </div>
-            </div>
-            <div class="row form-group">
-                {{ form_errors(form.password.second) }}
-                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Confirmer</label></div>
-                <div class="col-12 col-md-9">
-                    {{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
-                </div>
-            </div>
-
-<button type="submit"  class="btn btn-success btn-flat m-b-30 m-t-30" style="background: linear-gradient(to left, #48c6ef, #6f86d6)!important;">S'inscrire !</button>
-{{ form_end(form) }}
             </div>
         </div>
+
     </div>
-</div>
 
-
-<script src="{{ asset('libraries/assets/js/vendor/jquery-2.1.4.min.js') }}"></script>
-<script src="{{ asset('libraries/assets/js/popper.min.js') }}"></script>
-<script src="{{ asset('libraries/assets/js/plugins.js') }}"></script>
-<script src="{{ asset('libraries/assets/js/main.js') }}"></script>
-</body>
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
-

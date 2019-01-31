@@ -42,11 +42,11 @@
     </div>
         
 <div id="button" style="position: fixed; text-align: center;bottom: 100px; width: 100%;">
-	<a href="{{ path('community') }}" style="text-align: center; text-decoration: none; color: black;"><button style="width: 300px; height: 100px; border-radius: 5px; background-color: lightgray; font-size: 24px; margin-right: 100px;" onmouseover="this.style.backgroundColor='white'"; onmouseout="this.style.backgroundColor='lightgray'";>JE VISITE</button></a>
-	<a href="{{ path('user_registration') }}" style="text-align: center; text-decoration: none; color: black;"><button style="width: 300px; height: 100px; border-radius: 5px; background-color: lightgray; font-size: 24px;" onmouseover="this.style.backgroundColor = 'white'"; onmouseout="this.style.backgroundColor='lightgray'";>JE M'INSCRIS</button></a>
+	<a href="{{ path('community') }}" style="text-align: center; text-decoration: none; color: black;"><button style="width: 300px; height: 100px; border-radius: 5px; background-color: lightgray; font-size: 24px; margin-right: 100px; font-family: 'Open Sans';" onmouseover="this.style.backgroundColor='white'"; onmouseout="this.style.backgroundColor='lightgray'";>JE VISITE</button></a>
+	<a href="{{ path('user_registration') }}" style="text-align: center; text-decoration: none; color: black;"><button style="width: 300px; height: 100px; border-radius: 5px; background-color: lightgray; font-size: 24px; font-family: 'Open Sans';" onmouseover="this.style.backgroundColor = 'white'"; onmouseout="this.style.backgroundColor='lightgray'";>JE M'INSCRIS</button></a>
 </div>
 <div id="buttonConnection" style="position: fixed; top: 0px; right: 10px;">
-	<a href="{{ path('security_login') }}" style="text-align: center; text-decoration: none; color: white;"><button style="width: 50px; height: 40px; border-radius: 5px; background-color: lightgray; font-size: 18px;" onmouseover="this.style.backgroundColor = 'white'"; onmouseout="this.style.backgroundColor='lightgray'";><i class="fas fa-power-off"></i></button></a>
+	<a href="{{ path('security_login') }}" style="text-align: center; text-decoration: none; color: white;"><button style="width: 50px; height: 40px; border-radius: 5px; background-color: #48c6ef; font-size: 18px;" onmouseover="this.style.backgroundColor = '#6f86d6'; this.style.color = 'white'"; onmouseout="this.style.backgroundColor='#48c6ef';this.style.color = 'white'";><i class="fas fa-power-off"></i></button></a>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -63,46 +63,6 @@ window.onscroll = function(ev) {
 };
 
 </script>
-{#<script>
-	// Hide Header on on scroll down
-var didScroll;
-var lastScrollTop = 0;
-var delta = 5;
-var navbarHeight = $('#test').outerHeight();
-
-$(window).scroll(function(event){
-    didScroll = true;
-});
-
-setInterval(function() {
-    if (didScroll) {
-        hasScrolled();
-        didScroll = false;
-    }
-}, 250);
-
-function hasScrolled() {
-    var st = $(this).scrollTop();
-    
-    // Make sure they scroll more than delta
-    if(Math.abs(lastScrollTop - st) <= delta)
-        return;
-    
-    // If they scrolled down and are past the navbar, add class .nav-up.
-    // This is necessary so you never see what is "behind" the navbar.
-    if (st > lastScrollTop && st > navbarHeight){
-        // Scroll Down
-        $('#button').fadeOut();
-    } else {
-        // Scroll Up
-        if(st + $(window).height() < $(document).height()) {
-            $('#button').fadeIn();
-        }
-    }
-    
-    lastScrollTop = st;
-}
-</script>#}
 
 <script src="{{ asset('parallax/parallax.js') }}"></script>
   </body>

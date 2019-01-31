@@ -1,56 +1,29 @@
-
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My Wod Journal</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
 
-    <link rel="apple-touch-icon" href="{{ asset('libraries/apple-icon.png') }}">
-    <link rel="shortcut icon" href="{{ asset('libraries/favicon.ico') }}">
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
-    <link rel="stylesheet" href="{{ asset('libraries/assets/css/normalize.css') }}">
-    <link rel="stylesheet" href="{{ asset('libraries/assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('libraries/assets/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('libraries/assets/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('libraries/assets/css/flag-icon.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('libraries/assets/css/cs-skin-elastic.css') }}">
-    <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less') }}'"> -->
-    <link rel="stylesheet" href="{{ asset('libraries/assets/scss/style.css') }}">
-
-     <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-        }
-    </style>
-
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
-
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{ asset('libraries/template3/css/style.css') }}">
 </head>
-<body class="bg-dark">
+<body>
 
-{% if error %}
-    <div class="alert alert-danger">
-        {{ error.messageKey }}
-    </div>
-{% endif %}
-
-<div class="sufee-login d-flex align-content-center flex-wrap">
-    <div class="container">
-        <div class="login-content">
-            <div class="login-logo">
-              
-            </div>
-            <div class="login-form">
-                 <h3 style="text-align: center; padding-bottom: 40px;">My Wod Journal - connexion</h3>
-                <form action="{{ path('security_login') }}" method="post">
-                    <div class="form-group">
+    <div class="main">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <img src="{{ asset('libraries/template3/images/signin-img.png') }}" alt="">
+                </div>
+                <div class="signup-form">
+                     <form action="{{ path('security_login') }}" method="post" class="register-form" id="register-form">
+                        <h2>INSCRIPTION</h2>
+                            <div class="form-group">
                         <label>Pseudo</label>
                         <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control"/>
                     </div>
@@ -58,31 +31,24 @@
                         <label>Mot de passe</label>
                         <input type="password" id="password" name="_password" class="form-control" />
                     </div>
-                    <div class="checkbox">
-                        {#<label>
-                            <input type="checkbox"> Remember Me
-                        </label> #}
-                        {#<label class="pull-right">
-                            <a href="#"  style="color: #6f86d6!important;">Mot de passe oublié?</a>
-                        </label>#}
-
-                    </div>
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
-                    <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30" style="background: linear-gradient(to left, #48c6ef, #6f86d6)!important;">Connexion</button>
-                    <div class="register-link m-t-15 text-center" >
-                        <p>Tu n'es pas inscris ? <a href="{{ path('user_registration') }}" style="color: #6f86d6!important;"> C'est par ici !</a></p>
+                    <div class="form-submit">
+                    <input type="submit" value="JE M'INSCRIS" class="submit" name="submit" id="submit"  style="background: linear-gradient(to left, #48c6ef, #6f86d6)!important;"/>
                     </div>
-                </form>
+
+                    <div class="form-group">
+                        <p style="font-size: 18px;">Tu n'es pas inscris ? <a href="{{ path('user_registration') }}" style="color: #6f86d6!important;"> C'est par ici !</a></p>
+                    </div>
+                            
+                    </form>
+                </div>
             </div>
         </div>
+
     </div>
-</div>
 
-
-<script src="{{ asset('libraries/assets/js/vendor/jquery-2.1.4.min.js') }}"></script>
-<script src="{{ asset('libraries/assets/js/popper.min.js') }}"></script>
-<script src="{{ asset('libraries/assets/js/plugins.js') }}"></script>
-<script src="{{ asset('libraries/assets/js/main.js') }}"></script>
-</body>
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
-

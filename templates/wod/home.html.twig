@@ -6,26 +6,14 @@
 <h2 style="text-align: center;">Communauté</h2><br />
 <p style="text-align: center; font-size: 20px;">Découvrez les entrainement des autres membres de la communauté</p><br />
     {% for wod in listWods %}
-        <div class="col-md-8 offset-2">
-            <aside class="profile-nav alt">
-                <section class="card">
-                    <div class="card-header user-header alt bg-dark">
-                        <div class="media">
-                            {#
-                            <a href="#">
-                                <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
-                            </a>
-                            #}
-                            <div class="media-body">
-                                <h2 class="text-light display-6">  {{ wod.name|upper }}</h2>
+        <div class="container">
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h2 class="text-light display-6">  {{ wod.name|upper }}</h2>
                                 <i style="color: #6f86d6;">effectué par {{ wod.username }}</i>
                                 <p>{{ wod.date }}</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <ul class="list-group list-group-flush">
+                        </li>
                         <li class="list-group-item">
                             <strong>Temps:</strong> <br />
                             {{ wod.time }}
@@ -49,8 +37,7 @@
                         </li>
                     </ul>
 
-                </section>
-            </aside>
+                </div>
         </div>
 
 
