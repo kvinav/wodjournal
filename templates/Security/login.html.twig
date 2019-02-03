@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+    <link href="{{ asset('libraries/images/favicon.ico') }}" rel="icon"  type="image/png" />
+    <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48" href="{{ asset('libraries/images/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('libraries/images/apple-touch-icon.png') }}">
+
+    <title>Connexion à My WOD Journal</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
@@ -22,7 +27,7 @@
                 </div>
                 <div class="signup-form">
                      <form action="{{ path('security_login') }}" method="post" class="register-form" id="register-form">
-                        <h2>INSCRIPTION</h2>
+                        <h2>Connexion</h2>
                             <div class="form-group">
                         <label>Pseudo</label>
                         <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control"/>
@@ -33,7 +38,7 @@
                     </div>
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
                     <div class="form-submit">
-                    <input type="submit" value="JE M'INSCRIS" class="submit" name="submit" id="submit"  style="background: linear-gradient(to left, #48c6ef, #6f86d6)!important;"/>
+                    <input type="submit" value="JE ME CONNECTE" class="submit" name="submit" id="submit"  style="background: linear-gradient(to left, #48c6ef, #6f86d6)!important;"/>
                     </div>
 
                     <div class="form-group">

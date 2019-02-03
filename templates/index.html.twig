@@ -5,6 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+    <link href="{{ asset('libraries/images/favicon.ico') }}" rel="icon"  type="image/png" />
+    <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48" href="{{ asset('libraries/images/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('libraries/images/apple-touch-icon.png') }}">
+    <link href="{{ asset('libraries/assets/css/style.css') }}" rel="stylesheet">
     <title>Bienvenue sur My WOD Journal</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
@@ -26,14 +31,61 @@
       });
     </script>
   </head>
-  <body style="background-color: black;">
+  <body style="background-color: rgba(46, 49, 49, 1);">
 	
     <div class="parallax-container" data-parallax="scroll" data-position="top" data-bleed="10" data-image-src="{{ asset('libraries/images/background1filtered.jpg') }}" data-natural-width="1400" data-natural-height="900" style="font-size: 40px; text-align: center; color:white; padding-top: 20%;">
-      		Bienvenue sur My WOD Journal<br />
-
+      		Bienvenue sur My WOD Journal<br /><br />
+          Votre suivi sportif au quotidien qui va casser votre routine !
+        <div class="arrow bounce">
+  <a class="fa fa-angle-down fa-2x" href="#p2"></a>
+</div>
       </div>
+<section>
+  <div class="cards-section">
+<div class="card card2">
+  <div class="card__content">
+    <div class="content__text">
+      <h4 class="content__title">PARTAGEZ</h4>
+      <p><em> Partagez vos entrainements avec toute la communauté et échangez avec eux sur vos ressentis. Chaque séance enregistrée sera un pas de plus vers le progression grâce aux conseils des autres membres.</em></p>
+    </div>
+    <div class="content__footer">
+      <a href="{{ path('community') }}" target="_blank" class="footer__links" style="color:black!important;">En savoir plus &#8594;</a><br><br>
+    </div>
+  </div>
+</div>
+<div class="card card2">
+  <div class="card__content">
+    <div class="content__text">
+      <h4 class="content__title">INSPIREZ-VOUS</h4>
+      
+      <p><em>
+                                    Brisez votre routine et inspirez-vous des entrainements des autres membres de la communauté. Commentez, likez, échangez avec d'autres sportifs pour paufiner vos entrainements et vos techniques.</em></p>
+    </div>
+    <div class="content__footer">
+      <a href="{{ path('community') }}" target="_blank" class="footer__links" style="color:black!important;">En savoir plus &#8594;</a><br><br>
+    </div>
+  </div>
+</div>
+<div class="card card2">
+  <div class="card__content">
+    <div class="content__text">
+      <h4 class="content__title">PROGRESSEZ</h4>
+      <p><em> Grâce à votre journal de bord, vous connaîtrez vos performances sur chaque entrainement sans jamais les oublier, et votre coach pourra suivre vos entrainements au quotidien.</em></p>
+    </div>
+    <div class="content__footer">
+      <a href="{{ path('community') }}" target="_blank" class="footer__links" style="color:black!important;">En savoir plus &#8594;</a><br><br>
+    </div>
+  </div>
+</div>
+</div>
+<div class="arrow bounce">
+  <a class="fa fa-angle-down fa-5x" href="#p2"></a>
+</div>
 
-    <div class="parallax-container" data-parallax="scroll" data-bleed="10" data-speed="0.1" data-image-src="{{ asset('libraries/images/background3filtered.jpg') }}" data-natural-width="1700" data-natural-height="1400" style="text-align: center; font-size: 30px; padding-top: 10%;">
+</section>
+
+
+    <div class="parallax-container"  id="p2" data-parallax="scroll" data-bleed="10" data-speed="0.1" data-image-src="{{ asset('libraries/images/background3filtered.jpg') }}" data-natural-width="1700" data-natural-height="1400" style="text-align: center; font-size: 30px; padding-top: 10%;">
     	Retrouvez les entrainements de toute la communauté et partagez les vôtres. <br /><br /><br /><i class="fas fa-arrow-circle-down fa-lg"></i>
     </div>
 
@@ -41,13 +93,7 @@
     	On a tous connu la routine et le manque d'inspiration, alors aidez les autres à innover et laissez les vous inspirer !
     </div>
         
-<div id="button" style="position: fixed; text-align: center;bottom: 100px; width: 100%;">
-	<a href="{{ path('community') }}" style="text-align: center; text-decoration: none; color: black;"><button style="width: 300px; height: 100px; border-radius: 5px; background-color: lightgray; font-size: 24px; margin-right: 100px; font-family: 'Open Sans';" onmouseover="this.style.backgroundColor='white'"; onmouseout="this.style.backgroundColor='lightgray'";>JE VISITE</button></a>
-	<a href="{{ path('user_registration') }}" style="text-align: center; text-decoration: none; color: black;"><button style="width: 300px; height: 100px; border-radius: 5px; background-color: lightgray; font-size: 24px; font-family: 'Open Sans';" onmouseover="this.style.backgroundColor = 'white'"; onmouseout="this.style.backgroundColor='lightgray'";>JE M'INSCRIS</button></a>
-</div>
-<div id="buttonConnection" style="position: fixed; top: 0px; right: 10px;">
-	<a href="{{ path('security_login') }}" style="text-align: center; text-decoration: none; color: white;"><button style="width: 50px; height: 40px; border-radius: 5px; background-color: #48c6ef; font-size: 18px;" onmouseover="this.style.backgroundColor = '#6f86d6'; this.style.color = 'white'"; onmouseout="this.style.backgroundColor='#48c6ef';this.style.color = 'white'";><i class="fas fa-power-off"></i></button></a>
-</div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script>
