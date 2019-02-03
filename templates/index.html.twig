@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
 	<style>
+  html {
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
+}
 		body {
 			font-family: 'Open Sans', sans-serif;
 		}
@@ -40,7 +45,7 @@
   <a class="fa fa-angle-down fa-2x" href="#p2"></a>
 </div>
       </div>
-<section>
+<section id="p2">
   <div class="cards-section">
 <div class="card card2">
   <div class="card__content">
@@ -79,18 +84,17 @@
 </div>
 </div>
 <div class="arrow bounce">
-  <a class="fa fa-angle-down fa-5x" href="#p2"></a>
+  <a class="fa fa-angle-down fa-5x" href="#p3"></a>
 </div>
 
 </section>
 
 
-    <div class="parallax-container"  id="p2" data-parallax="scroll" data-bleed="10" data-speed="0.1" data-image-src="{{ asset('libraries/images/background3filtered.jpg') }}" data-natural-width="1700" data-natural-height="1400" style="text-align: center; font-size: 30px; padding-top: 10%;">
-    	Retrouvez les entrainements de toute la communauté et partagez les vôtres. <br /><br /><br /><i class="fas fa-arrow-circle-down fa-lg"></i>
-    </div>
-
-    <div class="parallax-container" data-parallax="scroll" data-position="top" data-bleed="10" data-image-src="{{ asset('libraries/images/background1filtered.jpg') }}" data-natural-width="1400" data-natural-height="900"  style="text-align: center; font-size: 30px; padding-top: 10%; color:white; padding-right: 30%; padding-left:30%;">
-    	On a tous connu la routine et le manque d'inspiration, alors aidez les autres à innover et laissez les vous inspirer !
+    <div class="parallax-container"  id="p3" data-parallax="scroll" data-bleed="10" data-speed="0.1" data-image-src="{{ asset('libraries/images/background3filtered.jpg') }}" data-natural-width="1700" data-natural-height="1400" style="text-align: center; font-size: 30px; padding-top: 10%;">
+    	Retrouvez les entrainements de toute la communauté et partagez les vôtres. <br />
+    	On a tous connu la routine et le manque d'inspiration, <br />alors aidez les autres à innover et laissez les vous inspirer !<br /><br />
+      
+  <a href="{{ path('community') }}" style=" text-decoration: none; color: black;"><button style="width: 200px; height: 100px;border-radius: 5px; background-color: lightgray; font-size: 18px; text-transform: uppercase; cursor: pointer; font-family: 'Open Sans';" onmouseover="this.style.backgroundColor='white'"; onmouseout="this.style.backgroundColor='lightgray'";>accès au site</button></a>
     </div>
         
 
