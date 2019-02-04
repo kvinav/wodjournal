@@ -50,10 +50,9 @@ jQuery(document).ready(function($) {
 		$.ajax({
 			url: "http://127.0.0.1:8000/journal/list/service",
 			method: "post",
-			data: {'choice': choice, 'userId': userId},
+			data: {choice: choice, userId: userId},
 			dataType : 'json',
 		}).done(function(msg){
-			console.log(msg);
 			refreshList(msg);
 		});
 	}
@@ -61,6 +60,7 @@ jQuery(document).ready(function($) {
 	function refreshList(msg){
 		list.innerHTML = "";
 		$.each(JSON.parse(msg['data']), function (i, item){
+			console.log(item);
 			var li = document.createElement('li');
 			var text = document.createTextNode(item.work + " " + item.time);
 			li.appendChild(text);
