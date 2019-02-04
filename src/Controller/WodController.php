@@ -101,8 +101,7 @@ class WodController extends AbstractController
              }else{
                 $listWods = array();
              }
-             $listWodsFormatted = (array)$listWods;
-           return new JsonResponse(array('data' => json_encode($listWodsFormatted)));
+           return new JsonResponse(array('data' => json_encode($listWods)));
 
         }
         return new Response("Erreur : Ce n'est pas une requête Ajax", 400);
