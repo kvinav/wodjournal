@@ -96,12 +96,13 @@ class WodController extends AbstractController
 
                     $listWods[] = $this->getDoctrine()
                         ->getRepository(Wod::class)
-                        ->findBy(array('id' => $todo->getWodId()))[0];
+                        ->findBy(array('id' => $todo->getWodId()));
                      }
              }else{
                 $listWods = array();
              }
-           return new JsonResponse(array('data' => json_encode($listWods)));
+
+           return new JsonResponse(array('data' => json_encode(serialize($listWods))));
 
         }
         return new Response("Erreur : Ce n'est pas une requête Ajax", 400);

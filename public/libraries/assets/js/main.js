@@ -53,14 +53,16 @@ jQuery(document).ready(function($) {
 			data: {choice: choice, userId: userId},
 			dataType : 'json',
 		}).done(function(msg){
+			console.log(JSON.parse(msg['data']));
 			refreshList(msg);
+
 		});
 	}
 
 	function refreshList(msg){
 		list.innerHTML = "";
+		console.log(msg);
 		$.each(JSON.parse(msg['data']), function (i, item){
-			console.log(item);
 			var li = document.createElement('li');
 			var text = document.createTextNode(item.work + " " + item.time);
 			li.appendChild(text);
