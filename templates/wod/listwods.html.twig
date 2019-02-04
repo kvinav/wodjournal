@@ -3,18 +3,24 @@
 {% block title %}Hello{% endblock %}
 
 {% block body %}
-    {% if app.request.attributes.get('_route') == 'todo_list' %}
-        <h2 style="text-align: center; margin-bottom: 30px;">Wods à faire</h2>
-    {% else %}
     <h2 style="text-align: center; margin-bottom: 30px;">Mes wods</h2>
 
-    {% endif %}
     {% if listWods is empty %}
         <div class="container" style="text-align:center; font-size: 18px;">
                 <p>Vous n'avez pas encore enregistré d'entrainements, commencez de suite en <a href="{{ path('wod') }}" style="text-decoration: none; color: grey;" onmouseover="this.style.color='black'; this.style.textDecoration='underline';" onmouseout="this.style.color='grey'; this.style.textDecoration='none';">partagant votre dernier entrainement avec la communauté </a>!
         </div>
 
     {% endif %}
+    <div class="container" style="text-align:center;">Choix de l'affichage : 
+        <select id="selectList" class="form-control">
+            <option>Tous mes wods</option>
+            <option>Wods effectués</option>
+            <option>A faire plus tard</option>
+        </select>
+        <div id="list">
+        </div>
+        <div  id="userId" style="display: none;">{{ listWods[0].userId }}
+        </div>
     {% for wod in listWods %}
          <div class="container">
                 <div class="card">

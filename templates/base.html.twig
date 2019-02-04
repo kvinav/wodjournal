@@ -122,6 +122,8 @@ if( isMobile.any() ){
   src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
+  
+  {% if app.request.get('_route') == 'wod' %}
    <script>
 
                 
@@ -133,6 +135,7 @@ if( isMobile.any() ){
     CKEDITOR.instances['wod_work'].setData(work);
     CKEDITOR.instances['wod_weight'].setData(weights);
     </script>
+  {% endif %}
 <!-- Global site tag (gtag.js) - Google Analytics -->
 
 </body>
