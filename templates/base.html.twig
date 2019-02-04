@@ -40,17 +40,17 @@
       <a class="navbar-brand" href="{{ path('home') }}">My Wod Journal</a>
     </div>
     <ul class="nav navbar-nav">
-         <li class="active"><a href="{{ path('home') }}">Accueil</a></li>
-         <li>  <a href="{{ path('community') }}">Communauté</a></li>
+         <li {% if app.request.get('_route') == 'home' %} class="active" {% endif %}><a href="{{ path('home') }}">Accueil</a></li>
+         <li {% if app.request.get('_route') == 'community' %} class="active" {% endif %}>  <a href="{{ path('community') }}">Communauté</a></li>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-       <li class="dropdown">
+       <li {% if app.request.get('_route') == 'wods_list' or app.request.get('_route') == 'wod' or app.request.get('_route') == 'todo_list' or  app.request.get('_route') == 'security_login' %} class="dropdown active"{% else %} class="dropdown" {% endif %}>
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mon profil
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li> <a href="{{ path('wods_list') }}">Mes entrainements</a></li>
-            <li><a href="{{ path('wod') }}">Ajouter un entrainement</a></li>
-            <li><a href="{{ path('todo_list') }}">Entrainements à faire</a></li>
-            <li><a href="{{ path('security_logout') }}"> Se déconnecter</a></li>
+            <li {% if app.request.get('_route') == 'wods_list' %} class="active" {% endif %}> <a href="{{ path('wods_list') }}">Mes entrainements</a></li>
+            <li {% if app.request.get('_route') == 'wod' %} class="active" {% endif %}><a href="{{ path('wod') }}">Ajouter un entrainement</a></li>
+            <li {% if app.request.get('_route') == 'todo_list' %} class="active" {% endif %}><a href="{{ path('todo_list') }}">Entrainements à faire</a></li>
+            <li {% if app.request.get('_route') == 'security_logout' %} class="active" {% endif %}><a href="{{ path('security_logout') }}"> Se déconnecter</a></li>
         </ul>
       </li>
       
@@ -80,17 +80,52 @@
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
+  <script id="scriptCK"></script>
+<script id="scriptCKJQ"></script>
+  <script>
+  var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
+if( isMobile.any() ){
+  document.getElementById('scriptCK').setAttribute('src', "{{ asset('ckeditormobile/ckeditor.js') }}");
+  document.getElementById('scriptCK').setAttribute('type', "text/javascript");
+  document.getElementById('scriptCKJQ').setAttribute('src', "{{ asset('ckeditormobile/adapters/jquery.js') }}");
+  document.getElementById('scriptCKJQ').setAttribute('type', "text/javascript");
+}else{
+  document.getElementById('scriptCK').setAttribute('src', "{{ asset('ckeditor/ckeditor.js') }}");
+  document.getElementById('scriptCK').setAttribute('type', "text/javascript");
+  document.getElementById('scriptCKJQ').setAttribute('src', "{{ asset('ckeditor/adapters/jquery.js') }}");
+  document.getElementById('scriptCKJQ').setAttribute('type', "text/javascript");
+
+}
+</script>
 <script src="{{ asset('libraries/assets/js/main.js') }}"></script>
-<script src="{{ asset('ckeditor/ckeditor.js') }}" type="text/javascript"></script>
-<script src="{{ asset('ckeditor/adapters/jquery.js') }}" type="text/javascript"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script
   src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
    <script>
+
                 
-                CKEDITOR.replace( 'wod[work]' );
+        CKEDITOR.replace( 'wod[work]' );
      CKEDITOR.replace( 'wod[comment]' );
       CKEDITOR.replace( 'wod[weight]' );
       var work = document.getElementById('workout_value').innerHTML;

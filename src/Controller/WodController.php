@@ -20,7 +20,7 @@ class WodController extends AbstractController
         return $this->render('index.html.twig');
     }
     /**
-     * @Route("/community", name="community")
+     * @Route("/communaute", name="community")
      */
     public function community()
     {
@@ -35,7 +35,7 @@ class WodController extends AbstractController
     /**
      * @Route("/journal/ajout-wod", name="wod")
      */
-    public function index(Request $request)
+    public function addWod(Request $request)
     {
         $wod = new Wod();
         $em = $this->getDoctrine()->getManager();
@@ -64,11 +64,9 @@ class WodController extends AbstractController
 
         $user = $this->getUser();
         $id = $user->getId();
-
         $listWods = $this->getDoctrine()
             ->getRepository(Wod::class)
             ->findBy(array('userId' => $id), array('id' => 'desc'));
-
         return $this->render('wod/listwods.html.twig', [
             'listWods' => $listWods,
         ]);
