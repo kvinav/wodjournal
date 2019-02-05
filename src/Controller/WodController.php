@@ -69,6 +69,7 @@ class WodController extends AbstractController
         $listWods = $this->getDoctrine()
             ->getRepository(Wod::class)
             ->findBy(array('userId' => $id), array('id' => 'desc'));
+        
         return $this->render('wod/listwods.html.twig', [
             'listWods' => $listWods,
         ]);
@@ -101,8 +102,11 @@ class WodController extends AbstractController
              }else{
                 $listWods = array();
              }
+               $response = new Response(json_encode(serialize($listWods)));
+            $response->headers->set('Content-Type', 'application/json');
 
-           return new JsonResponse(array('data' => json_encode(serialize($listWods))));
+            return $response;
+           //return new JsonResponse(array('data' => json_encode(serialize($listWods))));
 
         }
         return new Response("Erreur : Ce n'est pas une requête Ajax", 400);
