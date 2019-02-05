@@ -69,47 +69,21 @@ class WodController extends AbstractController
         $listWods = $this->getDoctrine()
             ->getRepository(Wod::class)
             ->findBy(array('userId' => $id), array('id' => 'desc'));
+        $todos = $this->getDoctrine()
+            ->getRepository(Todo::class)
+            ->findBy(array('userId' => $user->getId()));
+        $listWodsTodo = array();
+        foreach ($todos as $todo) {
+
+            $listWodsTodo[] = ($this->getDoctrine()
+                ->getRepository(Wod::class)
+                ->findBy(array('id' => $todo->getWodId())))[0];
+        }
         
         return $this->render('wod/listwods.html.twig', [
             'listWods' => $listWods,
+            'listWodsTodo' => $listWodsTodo,
         ]);
-    }
-    
-    /**
-     * @Route("/journal/list/service", name="liste_service")
-     */
-    public function listServiceAction(Request $request)
-    {
-
-        if ($request->isXmlHttpRequest()){
-            $choice = $request->get('choice');
-            $userId = $request->get('userId');
-             if ($choice === 'Wods effectués') {
-                $listWods = $this->getDoctrine()
-                    ->getRepository(Wod::class)
-                    ->findBy(array('userId' => $userId), array('id' => 'desc'));
-             }else if ($choice === 'A faire plus tard') {
-                 $todos = $this->getDoctrine()
-                    ->getRepository(Todo::class)
-                    ->findBy(array('userId' => $userId));
-                $listWods = array();
-                    foreach ($todos as $todo) {
-
-                    $listWods[] = $this->getDoctrine()
-                        ->getRepository(Wod::class)
-                        ->findBy(array('id' => $todo->getWodId()));
-                     }
-             }else{
-                $listWods = array();
-             }
-               $response = new Response(json_encode(serialize($listWods)));
-            $response->headers->set('Content-Type', 'application/json');
-
-            return $response;
-           //return new JsonResponse(array('data' => json_encode(serialize($listWods))));
-
-        }
-        return new Response("Erreur : Ce n'est pas une requête Ajax", 400);
     }
     /**
      * @Route("/journal/ajout-todo", name="add_todolist")

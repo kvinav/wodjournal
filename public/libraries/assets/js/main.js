@@ -39,35 +39,6 @@ jQuery(document).ready(function($) {
     }, 500);
 });
 
-	$( "#selectList" ).change(function() {
-	
-	ajaxCall();
- 	function ajaxCall(choice){
- 		var choice = $('#selectList').val();
- 		var userId = $('#userId').text();
-		var list = $('#list');
-		console.log(choice, userId);
-		$.ajax({
-			url: "http://127.0.0.1:8000/journal/list/service",
-			method: "post",
-			data: {choice: choice, userId: userId},
-			dataType : 'json',
-		}).done(function(msg){
-			refreshList(msg);
-
-		});
-	}
-
-	function refreshList(msg){
-		list.innerHTML = "";
-		$.each(JSON.parse(msg), function (i, item){
-			var li = document.createElement('li');
-			var text = document.createTextNode(item.work + " " + item.time);
-			li.appendChild(text);
-			list.appendChild(li);
-		});
-	}
-});
 
 
 });
