@@ -11,7 +11,7 @@
         </div>
 
     {% endif %}
-    <div class="container" style="text-align:center;">Choix de l'affichage : 
+    <div class="container" style="text-align:center;">
         <select id="selectList" class="form-control">
             <option>Tous mes wods</option>
             <option>Wods effectués</option>
@@ -21,6 +21,7 @@
         </div>
         <div  id="userId" style="display: none;">{{ listWods[0].userId }}
         </div>
+        <div id="wods">
     {% for wod in listWods %}
          <div class="container">
                 <div class="card">
@@ -42,19 +43,40 @@
                             {{ wod.comment|raw }}
                         </li>
 
-                            {% if app.request.attributes.get('_route') == 'todo_list' %}
+                    </ul>
+
+            </div>
+        </div>
+
+
+    {% endfor %}
+</div>
+<div id="wodsTodo">
+     {% for wodTodo in listWodsTodo %}
+         <div class="container">
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h2 class="text-light display-6">  {{ wodTodo.name|upper }}</h2>
+                                <p>{{ wodTodo.date }}</p>
+                        </li>
+                        <li class="list-group-item">
+                        <strong>Workout:</strong><br />
+                            {{ wodTodo.work|raw }}
+                        </li>
+                        <li class="list-group-item">
+                        <strong>Poids utilisés:</strong><br />
+                            {{ wodTodo.weight|raw }}
+                        </li>
+                        <li class="list-group-item">
+                        <strong>Commentaire:</strong><br />
+                            {{ wodTodo.comment|raw }}
+                        </li>
                         <li class="list-group-item">
                             <strong>Action:</strong><br />
-                                <a href="{{ path('wod', {'name': wod.name, 'workout': wod.work, 'weights': wod.weight}) }}"><button class="btn btn-success">J'ai fait ce WOD</button></a>
+                                <a href="{{ path('wod', {'name': wodTodo.name, 'workout': wodTodo.work, 'weights': wodTodo.weight}) }}"><button class="btn btn-success">J'ai fait ce WOD</button></a>
                         </li>
-                            {% elseif app.request.attributes.get('_route') == 'wods_list'%}
-                               {% else %}
-                        <li class="list-group-item">
-                            <strong>Action:</strong><br />
-                                <a href="{{ path('wod', {'name': wod.name, 'workout': wod.work, 'weights': wod.weight}) }}"><button class="btn btn-success">J'ai fait ce WOD</button></a>
-                                <a href="{{ path('add_todolist', {'wodId': wod.id}) }}"><button class="btn btn-primary">A faire plus tard</button></a>
-                        </li>
-                            {% endif %}
+                        
 
                     </ul>
 
@@ -63,4 +85,5 @@
 
 
     {% endfor %}
+</div>
 {% endblock %}

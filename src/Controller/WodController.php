@@ -79,7 +79,6 @@ class WodController extends AbstractController
                 ->getRepository(Wod::class)
                 ->findBy(array('id' => $todo->getWodId())))[0];
         }
-        
         return $this->render('wod/listwods.html.twig', [
             'listWods' => $listWods,
             'listWodsTodo' => $listWodsTodo,

@@ -39,6 +39,24 @@ jQuery(document).ready(function($) {
     }, 500);
 });
 
+	$( "#selectList" ).change(function() {
+  		var choice = $( "#selectList" ).val();
+  		var wods = $('#wods');
 
+  		var wodsTodo = $('#wodsTodo');
+  		if (choice == 'Tous mes wods') {
+  			wods.show();
+  			wodsTodo.show();
+  		
+  		}else if (choice == 'Wods effectués') {
+  			wods.show();
+  			wodsTodo.hide();
+  	
+  		}else if (choice == 'A faire plus tard') {
+  			wods.hide();
+  			wodsTodo.show();
+  		
+  		}
+	});
 
 });
