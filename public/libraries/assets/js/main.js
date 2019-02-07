@@ -42,22 +42,21 @@ jQuery(document).ready(function($) {
 	$( "#selectList" ).change(function() {
   		var choice = $( "#selectList" ).val();
   		var wods = $('#wods');
-  		var title = $('#titleWods');
   		var wodsTodo = $('#wodsTodo');
   		if (choice == 'Tous mes wods') {
   			wods.show();
   			wodsTodo.show();
-  			title.text('Tous mes wods');
+
   		
   		}else if (choice == 'Wods effectués') {
   			wods.show();
   			wodsTodo.hide();
-  			title.text('Wods effectués');
+ 
   	
   		}else if (choice == 'A faire plus tard') {
   			wods.hide();
   			wodsTodo.show();
-  			title.text('A faire plus tard');
+  		
   		
   		}
 	});

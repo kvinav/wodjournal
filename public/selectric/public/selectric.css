@@ -89,7 +89,9 @@
 .selectric-open .selectric-items {
   display: block;
 }
-
+.selectric-open .button {
+  background: #e6e6e6;
+}
 .selectric-disabled {
   filter: alpha(opacity=50);
   opacity: 0.5;
