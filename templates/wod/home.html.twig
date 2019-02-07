@@ -11,29 +11,40 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <h2 class="text-light display-6">  {{ wod.name|upper }}</h2>
-                                <i style="color: #6f86d6;">effectué par {{ wod.username }}</i>
-                                <p>{{ wod.date }}</p>
+                                <p><i style="color: #333;">effectué par <span style="color: white;">{{ wod.username|upper }}</span> le <span style="color: white;">{{ wod.date }}</span></p></i>
                         </li>
-                        <li class="list-group-item">
-                            <strong>Temps:</strong> <br />
-                            {{ wod.time }}
+                        {% if wod.time is empty %}
+                        {% else %}
+                           <li class="list-group-item">
+                            <p class="title-list-group-item">Temps:</p> 
+                            <p class="content-list-group-item">{{ wod.time }}</p>
                         </li>
+                        {% endif %}
+                        
                         <li class="list-group-item">
-                            <strong>Workout:</strong><br />
-                            {{ wod.work|raw }}
+                            <p class="title-list-group-item">Workout:</p>
+                            <div class="content-list-group-item">{{ wod.work|raw }}</div>
                         </li>
-                        <li class="list-group-item">
-                            <strong>Poids utilisés:</strong><br />
-                            {{ wod.weight|raw }}
+                        {% if wod.weight is empty %}
+                        {% else %}
+                            <li class="list-group-item">
+                            <p class="title-list-group-item">Poids utilisés:</p>
+                            <div class="content-list-group-item">{{ wod.weight|raw }}</div>
                         </li>
+                        {% endif %}
+                       
+                        {% if wod.comment is empty %}
+                        {% else %}
+                            
                         <li class="list-group-item">
-                            <strong>Commentaire:</strong><br />
-                            {{ wod.comment|raw }}
+                            <p class="title-list-group-item">Commentaire:</p>
+                            <div class="content-list-group-item">{{ wod.comment|raw }}</div>
                         </li>
+                        {% endif %}
+                       
                         <li class="list-group-item">
-                            <strong>Action:</strong><br />
-                            <a href="{{ path('add_todolist', {'wodId': wod.id}) }}"><button class="btn btn-primary">A faire plus tard</button></a>
-                            <a href="{{ path('wod', {'name': wod.name, 'workout': wod.work, 'weights': wod.weight}) }}"><button class="btn btn-success">J'ai fait ce WOD</button></a>
+                            <a href="{{ path('add_todolist', {'wodId': wod.id}) }}"><button class="btn btn-primary btn-lg">A faire plus tard</button></a>
+                            <a href="{{ path('wod', {'name': wod.name, 'workout': wod.work, 'weights': wod.weight}) }}"><button class="btn btn-success btn-lg pull-right">J'ai fait ce WOD</button></a>
                         </li>
                     </ul>
 
