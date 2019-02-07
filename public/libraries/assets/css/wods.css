@@ -10,6 +10,14 @@ font-family: 'Open Sans', sans-serif;
 	width: 70%;
 	margin: auto;
 }
+@media (max-width: 767px) {
+  .card {
+	text-align: left;
+	margin-top: 50px!important;
+	width: 100%;
+	margin: auto;
+	}
+}
 .todo .list-group-item:first-child {
 	background-color: lightgrey;
 	color: black;
