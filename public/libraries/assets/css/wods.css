@@ -1,0 +1,25 @@
+body {
+   font-family: 'Open Sans', sans-serif;
+}
+p, h1, li {
+font-family: 'Open Sans', sans-serif;
+}
+.card {
+	text-align: left;
+	margin-top: 50px!important;
+	width: 70%;
+	margin: auto;
+}
+.todo .list-group-item:first-child {
+	background-color: lightgrey;
+	color: black;
+}
+.list-group-item:first-child {
+	background-color: grey;
+	color: white;
+	text-align: center;
+}
+.list-group-item strong {
+	font-weight: bold;
+	font-size: 18px;
+}
