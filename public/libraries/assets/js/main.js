@@ -101,5 +101,8 @@ if(isMobile.any()) {
   		$(this).removeClass('btn-lg');
 	});
 }
+$(function() {
+  $('select').selectric();
+});
 
 });

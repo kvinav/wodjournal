@@ -6,45 +6,40 @@
 <h2 style="text-align: center;">Communauté</h2><br />
 <p style="text-align: center; font-size: 20px;">Découvrez les entrainement des autres membres de la communauté</p><br />
     {% for wod in listWods %}
-        <div class="container">
+        <div class="col-md-3 col-sm-4">
                 <div class="card">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <h2 class="text-light display-6">  {{ wod.name|upper }}</h2>
                                 <p><i style="color: #333;">effectué par <span style="color: white;">{{ wod.username|upper }}</span> le <span style="color: white;">{{ wod.date }}</span></p></i>
                         </li>
-                        {% if wod.time is empty %}
-                        {% else %}
+                    
                            <li class="list-group-item">
                             <p class="title-list-group-item">Temps:</p> 
                             <p class="content-list-group-item">{{ wod.time }}</p>
                         </li>
-                        {% endif %}
+                      
                         
                         <li class="list-group-item">
                             <p class="title-list-group-item">Workout:</p>
-                            <div class="content-list-group-item">{{ wod.work|raw }}</div>
+                            <div class="content-list-group-item">{{ wod.work|striptags|truncate(100, true)|raw|nl2br }}</div>
                         </li>
-                        {% if wod.weight is empty %}
-                        {% else %}
+                      
                             <li class="list-group-item">
                             <p class="title-list-group-item">Poids utilisés:</p>
-                            <div class="content-list-group-item">{{ wod.weight|raw }}</div>
+                            <div class="content-list-group-item">{{ wod.weight|striptags|truncate(100, true)|raw|nl2br }}</div>
                         </li>
-                        {% endif %}
                        
-                        {% if wod.comment is empty %}
-                        {% else %}
                             
                         <li class="list-group-item">
                             <p class="title-list-group-item">Commentaire:</p>
-                            <div class="content-list-group-item">{{ wod.comment|raw }}</div>
+                            <div class="content-list-group-item">{{ wod.comment|striptags|truncate(100, true)|raw|nl2br }}</div>
                         </li>
-                        {% endif %}
+                      
                        
                         <li class="list-group-item">
-                            <a href="{{ path('add_todolist', {'wodId': wod.id}) }}"><button class="btn btn-primary btn-lg">A faire plus tard</button></a>
-                            <a href="{{ path('wod', {'name': wod.name, 'workout': wod.work, 'weights': wod.weight}) }}"><button class="btn btn-success btn-lg pull-right">J'ai fait ce WOD</button></a>
+                            <a href="{{ path('add_todolist', {'wodId': wod.id}) }}"><button class="btn btn-primary">Commentaires</button></a>
+                            <a href="{{ path('wod', {'name': wod.name, 'workout': wod.work, 'weights': wod.weight}) }}"><button class="btn btn-success pull-right">Quick view</button></a>
                         </li>
                     </ul>
 

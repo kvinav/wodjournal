@@ -4,23 +4,38 @@ body {
 p, h1, li {
 font-family: 'Open Sans', sans-serif;
 }
-.card {
-	text-align: left;
-	margin-top: 50px!important;
-	width: 70%;
-	margin: auto;
+.card .text-light {
+	height: 50px;
+	font-size: 20px;
 }
-@media (max-width: 767px) {
+/*@media (max-width: 767px) {
   .card {
 	text-align: left;
 	margin-top: 25px!important;
 	width: 100%;
 	margin: auto;
 	}
+}*/
+#container-select {
+	width: 30%;
+	margin: auto;
+	margin-bottom: 30px;
 }
 .todo .list-group-item:first-child {
 	background-color: lightgrey;
 	color: black;
+}
+.list-group-item:nth-child(2) {
+	height: 50px;
+}
+.list-group-item:nth-child(3) {
+	height: 200px;
+}
+.list-group-item:nth-child(4) {
+	height: 100px;
+}
+.list-group-item:nth-child(5) {
+	height: 100px;
 }
 .list-group-item:first-child {
 	background-color: grey;
@@ -29,7 +44,7 @@ font-family: 'Open Sans', sans-serif;
 }
 .list-group-item .title-list-group-item {
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 18px;
 	padding: 0!important;
 	color: #333;
 	text-align: center;
