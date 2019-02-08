@@ -3,15 +3,13 @@
 {% block title %}Hello{% endblock %}
 
 {% block body %}
-    <h2 style="text-align: center; margin-bottom: 30px;">Mes wods</h2>
-
     {% if listWods is empty %}
         <div class="container" style="text-align:center; font-size: 18px;">
-                <p>Vous n'avez pas encore enregistré d'entrainements, commencez de suite en <a href="{{ path('wod') }}" style="text-decoration: none; color: grey;" onmouseover="this.style.color='black'; this.style.textDecoration='underline';" onmouseout="this.style.color='grey'; this.style.textDecoration='none';">partagant votre dernier entrainement avec la communauté </a>!
+                <p>Vous n'avez pas encore enregistré d'entrainements, commencez de suite en <a href="{{ path('wod') }}" style="text-decoration: none; color: grey;" onmouseover="this.style.color='black'; this.style.textDecoration='underline';" onmouseout="this.style.color='grey'; this.style.textDecoration='none';">partagant votre dernier entrainement avec la communauté </a>!</p>
         </div>
 
     {% endif %}
-    <div class="container" style="text-align:center;">
+    <div class="row" id="container-select">
         <select id="selectList" class="form-control">
             <option>Tous mes wods</option>
             <option>Wods effectués</option>
@@ -21,27 +19,37 @@
         </div>
         <div  id="userId" style="display: none;">{{ listWods[0].userId }}
         </div>
-        <div id="wods">
+    </div>
+<div id="wods">
     {% for wod in listWods %}
-         <div class="container">
+         <div class="col-md-3 col-sm-4">
                 <div class="card">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <h2 class="text-light display-6">  {{ wod.name|upper }}</h2>
+                            <h2 class="text-light">  {{ wod.name|upper }}</h2>
                                 <p>{{ wod.date }}</p>
                         </li>
+                        
+                           <li class="list-group-item">
+                            <p class="title-list-group-item">Temps:  {{ wod.time }} </p></li>
+                    
                         <li class="list-group-item">
-                        <strong>Workout:</strong><br />
-                            {{ wod.work|raw }}
+                        <p class="title-list-group-item">Workout:</p><div class="content-list-group-item">
+                            {{ wod.work|striptags|truncate(100, true)|raw|nl2br }}</div>
+
                         </li>
-                        <li class="list-group-item">
-                        <strong>Poids utilisés:</strong><br />
-                            {{ wod.weight|raw }}
+                       
+                             <li class="list-group-item">
+                        <p class="title-list-group-item">Poids utilisés:</p><div class="content-list-group-item">
+                            {{ wod.weight|striptags|truncate(50, true)|raw|nl2br }}</div>
                         </li>
-                        <li class="list-group-item">
-                        <strong>Commentaire:</strong><br />
-                            {{ wod.comment|raw }}
+                       
+                            <li class="list-group-item">
+                        <p class="title-list-group-item">Commentaire:</p><div class="content-list-group-item">
+                            {{ wod.comment|striptags|truncate(50, true)|raw|nl2br }}</div>
                         </li>
+                      
+                        
 
                     </ul>
 
@@ -50,30 +58,40 @@
 
 
     {% endfor %}
+
 </div>
 <div id="wodsTodo">
      {% for wodTodo in listWodsTodo %}
-         <div class="container">
-                <div class="card">
+         <div class="col-md-3 col-sm-4">
+                <div class="card todo">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <h2 class="text-light display-6">  {{ wodTodo.name|upper }}</h2>
                                 <p>{{ wodTodo.date }}</p>
                         </li>
-                        <li class="list-group-item">
-                        <strong>Workout:</strong><br />
-                            {{ wodTodo.work|raw }}
+                     
+                           <li class="list-group-item">
+                            <p class="title-list-group-item">Temps:</p> 
+                            <p>{{ wodTodo.time }}</p>
                         </li>
+                      
                         <li class="list-group-item">
-                        <strong>Poids utilisés:</strong><br />
-                            {{ wodTodo.weight|raw }}
+                       <p class="title-list-group-item">Workout:</p>
+                            <p>{{ wodTodo.work|raw }}</p>
                         </li>
-                        <li class="list-group-item">
-                        <strong>Commentaire:</strong><br />
-                            {{ wodTodo.comment|raw }}
+                        
+                             <li class="list-group-item">
+                        <p class="title-list-group-item">Poids utilisés:</P><p>
+                            {{ wodTodo.weight|raw }}</p>
                         </li>
+                 
+             
+                            <li class="list-group-item">
+                       <p class="title-list-group-item">Commentaire:</p><p>
+                            {{ wodTodo.comment|raw }}</p>
+                        </li>
+                    
                         <li class="list-group-item">
-                            <strong>Action:</strong><br />
                                 <a href="{{ path('wod', {'name': wodTodo.name, 'workout': wodTodo.work, 'weights': wodTodo.weight}) }}"><button class="btn btn-success">J'ai fait ce WOD</button></a>
                         </li>
                         

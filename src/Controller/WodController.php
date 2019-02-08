@@ -53,6 +53,8 @@ class WodController extends AbstractController
             $wod->setUserId($id);
             $em->persist($wod);
             $em->flush();
+
+            return $this->redirectToRoute('wods_list');
         }
         return $this->render('wod/index.html.twig', [
             'form' => $form->createView(),

@@ -42,21 +42,66 @@ jQuery(document).ready(function($) {
 	$( "#selectList" ).change(function() {
   		var choice = $( "#selectList" ).val();
   		var wods = $('#wods');
-
   		var wodsTodo = $('#wodsTodo');
   		if (choice == 'Tous mes wods') {
   			wods.show();
   			wodsTodo.show();
+
   		
   		}else if (choice == 'Wods effectués') {
   			wods.show();
   			wodsTodo.hide();
+ 
   	
   		}else if (choice == 'A faire plus tard') {
   			wods.hide();
   			wodsTodo.show();
   		
+  		
   		}
 	});
+	 $('.first-button').on('click', function () {
+
+    $('.animated-icon1').toggleClass('open');
+  });
+  $('.second-button').on('click', function () {
+
+    $('.animated-icon2').toggleClass('open');
+  });
+  $('.third-button').on('click', function () {
+
+    $('.animated-icon3').toggleClass('open');
+  });
+
+  var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
+
+
+if(isMobile.any()) {
+   $( "button" ).each(function( index ) {
+  		$(this).removeClass('btn-lg');
+	});
+}
+$(function() {
+  $('select').selectric();
+});
 
 });

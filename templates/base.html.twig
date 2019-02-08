@@ -13,18 +13,14 @@
     <link href="{{ asset('libraries/images/favicon.ico') }}" rel="icon"  type="image/png" />
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48" href="{{ asset('libraries/images/favicon.ico') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('libraries/images/apple-touch-icon.png') }}">
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
      <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-        }
-        p, h1, li {
-            font-family: 'Open Sans', sans-serif;
-        }
-    </style>
-
+     <link rel="stylesheet" href="{{ asset('selectric/public/selectric.css') }}">
+    
+<link href="{{ asset('libraries/assets/css/wods.css') }}" rel="stylesheet">
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
 </head>
@@ -33,13 +29,19 @@
 
 <!-- Left Panel -->
 <a href="javascript:" id="return-to-top"><i class="fa fa-arrow-up"></i></a>
-
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-static-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="{{ path('home') }}">My Wod Journal</a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ path('home') }}">My wod Journal</a>
     </div>
-    <ul class="nav navbar-nav">
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
          <li {% if app.request.get('_route') == 'home' %} class="active" {% endif %}><a href="{{ path('home') }}">Accueil</a></li>
          <li {% if app.request.get('_route') == 'community' %} class="active" {% endif %}>  <a href="{{ path('community') }}">Communauté</a></li>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -49,7 +51,6 @@
         <ul class="dropdown-menu">
             <li {% if app.request.get('_route') == 'wods_list' %} class="active" {% endif %}> <a href="{{ path('wods_list') }}">Mes entrainements</a></li>
             <li {% if app.request.get('_route') == 'wod' %} class="active" {% endif %}><a href="{{ path('wod') }}">Ajouter un entrainement</a></li>
-            <li {% if app.request.get('_route') == 'todo_list' %} class="active" {% endif %}><a href="{{ path('todo_list') }}">Entrainements à faire</a></li>
             <li {% if app.request.get('_route') == 'security_logout' %} class="active" {% endif %}><a href="{{ path('security_logout') }}"> Se déconnecter</a></li>
         </ul>
       </li>
@@ -60,6 +61,7 @@
         {% endif %}
         
     </ul>
+    </div><!--/.nav-collapse -->
   </div>
 </nav>
 </div>
@@ -122,7 +124,7 @@ if( isMobile.any() ){
   src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
-  
+ <script src="{{ asset('selectric/public/jquery.selectric.min.js') }}"></script> 
   {% if app.request.get('_route') == 'wod' %}
    <script>
 

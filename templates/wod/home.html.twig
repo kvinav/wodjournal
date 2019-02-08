@@ -3,37 +3,45 @@
 {% block title %}Hello{% endblock %}
 
 {% block body %}
-<h2 style="text-align: center;">Communauté</h2><br />
-<p style="text-align: center; font-size: 20px;">Découvrez les entrainement des autres membres de la communauté</p><br />
+<h1 class="title-page">Découvrez les entrainement des autres membres de la communauté</h1><br />
     {% for wod in listWods %}
-        <div class="container">
+        <div class="col-md-3 col-sm-4">
                 <div class="card">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <h2 class="text-light display-6">  {{ wod.name|upper }}</h2>
-                                <i style="color: #6f86d6;">effectué par {{ wod.username }}</i>
-                                <p>{{ wod.date }}</p>
+                                <p><i style="color: #333;">effectué par <span>{{ wod.username|upper }}</span> le <span>{{ wod.date }}</span></p></i>
+                        </li>
+                    
+                           <li class="list-group-item">
+                            <p class="title-list-group-item">Temps:</p> 
+                            <p class="content-list-group-item">{{ wod.time }}</p>
+                        </li>
+                      
+                        
+                        <li class="list-group-item">
+                            <p class="title-list-group-item">Workout:</p>
+                            <div class="content-list-group-item">{{ wod.work|striptags|truncate(100, true)|raw|nl2br }}</div>
+                        </li>
+                      
+                            <li class="list-group-item">
+                            <p class="title-list-group-item">Poids utilisés:</p>
+                            <div class="content-list-group-item">{{ wod.weight|striptags|truncate(100, true)|raw|nl2br }}</div>
+                        </li>
+                       
+                            
+                        <li class="list-group-item">
+                            <p class="title-list-group-item">Commentaire:</p>
+                            <div class="content-list-group-item">{{ wod.comment|striptags|truncate(100, true)|raw|nl2br }}</div>
                         </li>
                         <li class="list-group-item">
-                            <strong>Temps:</strong> <br />
-                            {{ wod.time }}
+                            <i class="far fa-thumbs-up fa-lg"></i>
+                            <i class="far fa-comment fa-lg"></i>
                         </li>
+                       
                         <li class="list-group-item">
-                            <strong>Workout:</strong><br />
-                            {{ wod.work|raw }}
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Poids utilisés:</strong><br />
-                            {{ wod.weight|raw }}
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Commentaire:</strong><br />
-                            {{ wod.comment|raw }}
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Action:</strong><br />
-                            <a href="{{ path('add_todolist', {'wodId': wod.id}) }}"><button class="btn btn-primary">A faire plus tard</button></a>
-                            <a href="{{ path('wod', {'name': wod.name, 'workout': wod.work, 'weights': wod.weight}) }}"><button class="btn btn-success">J'ai fait ce WOD</button></a>
+                            <a href="{{ path('add_todolist', {'wodId': wod.id}) }}"><button class="btn btn-primary">Commentaires</button></a>
+                            <a href="{{ path('wod', {'name': wod.name, 'workout': wod.work, 'weights': wod.weight}) }}"><button class="btn btn-success pull-right">Quick view</button></a>
                         </li>
                     </ul>
 
