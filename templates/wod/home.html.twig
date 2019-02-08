@@ -5,6 +5,7 @@
 {% block body %}
 <h1 class="title-page">Découvrez les entrainement des autres membres de la communauté</h1><br />
     {% for wod in listWods %}
+        
         <div class="col-md-3 col-sm-4">
                 <div class="card">
                     <ul class="list-group list-group-flush">
@@ -35,8 +36,18 @@
                             <div class="content-list-group-item">{{ wod.comment|striptags|truncate(100, true)|raw|nl2br }}</div>
                         </li>
                         <li class="list-group-item">
-                            <i class="far fa-thumbs-up fa-lg"></i>
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                {% if wod.liked == 1 %}
+                                <a class="unlike" data-wod="{{ wod.id }}"><i class="fas fa-thumbs-up fa-lg"></i></a>
+                                {% else %} 
+                                <a class="like" data-wod="{{ wod.id }}"><i class="far fa-thumbs-up fa-lg"></i></a>
+                                {% endif %}
+                           
                             <i class="far fa-comment fa-lg"></i>
+                            {% else %}
+                            <i class="far fa-thumbs-up fa-lg" id="likeNotRegistered"></i>
+                            <i class="far fa-comment fa-lg"></i>
+                            {% endif %}
                         </li>
                        
                         <li class="list-group-item">

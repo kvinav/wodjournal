@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Todo;
+use App\Entity\LikeWod;
 use App\Entity\Wod;
 use App\Form\WodType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,6 +31,17 @@ class WodController extends AbstractController
             ->getRepository(Wod::class)
             ->findBy(array(), array('id' => 'desc'));
 
+        foreach ($listWods as $wod) {
+            $liked = $this->getDoctrine()
+            ->getRepository(LikeWod::class)
+            ->findBy(array('userId' => $wod->getUserId(), 'wodId' => $wod->getId()));
+            if (empty($liked)){
+                $wod->liked = 0;
+            }else{
+                $wod->liked = 1;
+            }
+        }
+        
         return $this->render('wod/home.html.twig', array(
             'listWods' => $listWods,
         ));
@@ -121,5 +133,48 @@ class WodController extends AbstractController
         return $this->render('wod/listwods.html.twig', [
             'listWods' => $listWods,
         ]);
+    }
+    /**
+     * @Route("/journal/like", name="like_wod")
+     */
+    public function likeWod(Request $request)
+    {
+        if ($request->isXmlHttpRequest()){
+            $user = $this->getUser();
+            $wodId = $request->get('wodId');
+        
+            $like = new LikeWod();
+            $like->setWodId($wodId);
+            $like->setUserId($user->getId());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($like);
+            $em->flush();
+            
+           return new JsonResponse(array('data' => json_encode(serialize($like))));
+        }
+        return new Response("Erreur : Ce n'est pas une requête Ajax", 400);
+    }
+    /**
+     * @Route("/journal/unlike", name="unlike_wod")
+     */
+    public function unlikeWod(Request $request)
+    {
+        if ($request->isXmlHttpRequest()){
+            $user = $this->getUser();
+            $wodId = $request->get('wodId');
+        
+            $likeArray = $this->getDoctrine()
+                ->getRepository(LikeWod::class)
+                ->findBy(array('wodId' => $wodId, 'userId' => $user->getId()));
+            $like = $this->getDoctrine()
+                ->getRepository(LikeWod::class)
+                ->find($likeArray[0]->getId());
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($like);
+            $em->flush();
+            
+           return new JsonResponse(array('data' => json_encode('done')));
+        }
+        return new Response("Erreur : Ce n'est pas une requête Ajax", 400);
     }
 }
