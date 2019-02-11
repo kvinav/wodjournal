@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello{% endblock %}
+
+{% block body %}
+    <div class="container">
+<h2 style="text-align: center;">Ajoute ton entraînement</h2><br /><br />
+
+
+
+        {{ form_start(form, {'attr': {'class': 'form-horizontal', 'enctype': 'multipart/form-data'}}) }}
+            <div class="form-group">
+                {{ form_errors(form.name) }}
+                <label for="text-input" class=" form-control-label">Nom du WOD</label>
+                
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control', 'id': 'text-input', 'placeholder': 'Nom du WOD', 'value': app.request.query.get('name')}}) }}
+               
+            </div>
+            <div class="form-group">
+                {{ form_errors(form.work) }}
+                <label for="textarea-input" class=" form-control-label">Workout</label>
+                
+                         {{ form_widget(form.work, {'attr': {'class': 'form-control ckeditor', 'id': 'textarea-input', 'placeholder': 'Entrez le déroulement du workout', 'rows': '9'}}) }} 
+             
+                   <div style="display: none;" id="workout_value">
+                    {{ app.request.query.get('workout')|raw }}
+                   </div>
+            </div>
+        <div class="form-group">
+            {{ form_errors(form.weight) }}
+            <label for="textarea-input" class=" form-control-label">Poids utilisés</label>
+            
+                {{ form_widget(form.weight, {'attr': {'class': 'form-control ckeditor', 'id': 'textarea-input', 'placeholder': 'Entrez le poids et types de poids utilisés', 'rows': '9', 'value': app.request.query.get('weights')}}) }}
+      
+            <div style="display: none;" id="weights_value">
+                    {{ app.request.query.get('weights')|raw }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.comment) }}
+            <label for="textarea-input" class=" form-control-label">Commentaire</label>
+            
+                {{ form_widget(form.comment, {'attr': {'class': 'form-control ckeditor', 'id': 'textarea-input', 'placeholder': 'Entrez votre ressenti sur la séance', 'rows': '9'}}) }}
+            
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.time) }}
+            <label for="text-input" class=" form-control-label">Temps effectué</label>
+             {{ form_widget(form.time, {'attr': {'class': 'form-control', 'id': 'text-input', 'placeholder': 'Temps effectué'}}) }}
+      
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.date) }}
+            <label for="text-input" class=" form-control-label">Date</label>
+             {{ form_widget(form.date, {'attr': {'class': 'form-control', 'id': 'text-input datepicker', 'placeholder': 'Date'}}) }}  
+
+    </div>
+        <div class="form-group">
+                {{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-primary btn-lg', 'style': 'background: linear-gradient(to left, #48c6ef, #6f86d6)!important; border: none;' }}) }}
+
+        </div>
+
+{{ form_end(form) }}
+</div>
+    
+    
+{% endblock %}
