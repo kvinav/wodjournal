@@ -20,7 +20,7 @@ class WodController extends AbstractController
      */
     public function home()
     {
-        return $this->render('index.html.twig');
+        return $this->render('wod/index.html.twig');
     }
     /**
      * @Route("/communaute", name="community")
@@ -42,7 +42,7 @@ class WodController extends AbstractController
             }
         }
         
-        return $this->render('wod/home.html.twig', array(
+        return $this->render('wod/community.html.twig', array(
             'listWods' => $listWods,
         ));
     }
@@ -68,7 +68,7 @@ class WodController extends AbstractController
 
             return $this->redirectToRoute('wods_list');
         }
-        return $this->render('wod/index.html.twig', [
+        return $this->render('wod/addwod.html.twig', [
             'form' => $form->createView(),
         ]);
     }

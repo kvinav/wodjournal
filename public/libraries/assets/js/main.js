@@ -153,4 +153,9 @@ $(".unlike").on('click', function() {
 
 });
 
+$("#btn-homepage").on('click', function() {
+	window.location.href = window.location.pathname = '/inscription?email=' + $('#input-email-homepage').val();
+
+});
+
 });

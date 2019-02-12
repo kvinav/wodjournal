@@ -14,7 +14,13 @@
     <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48" href="{{ asset('libraries/images/favicon.ico') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('libraries/images/apple-touch-icon.png') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<<<<<<< HEAD
      <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
+=======
+
+
+     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+>>>>>>> 2b597a7ae6fa91a5b358f4609ae2b6f046bc6adb
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
      <link rel="stylesheet" href="{{ asset('selectric/public/selectric.css') }}">
     
@@ -66,13 +72,31 @@
 
 <!-- Right Panel -->
 
-<div class="container-fluid">
+{% if app.request.get('_route') == 'home' %}
+{% else %}
+  <div class="container-fluid">
+{% endif %}
 
     <!-- Header-->
 {% block body %}
     {% endblock %}
 
-</div> <!-- .content -->
+{% if app.request.get('_route') == 'home' %}
+{% else %}
+  </div>
+{% endif %}
+
+<footer class="footer">
+  <div class="row">
+    <div class="col-6">
+   My wod journal - Copyright 2019
+    </div>
+    <div class="col-6">
+      Mentions légales
+    </div>
+  </div>
+  </footer>
+<!-- .content -->
 <!-- /#right-panel -->
 
 <!-- Right Panel -->
