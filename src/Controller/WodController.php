@@ -22,6 +22,14 @@ class WodController extends AbstractController
     {
         return $this->render('wod/index.html.twig');
     }
+
+    /**
+     * @Route("/mentions-legales", name="legalMentions")
+     */
+    public function mentions()
+    {
+        return $this->render('wod/mentions.html.twig');
+    }
     /**
      * @Route("/communaute", name="community")
      */

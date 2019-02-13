@@ -157,5 +157,11 @@ $("#btn-homepage").on('click', function() {
 	window.location.href = window.location.pathname = '/inscription?email=' + $('#input-email-homepage').val();
 
 });
+    $('.popup').on('click', function(){
+      var wodId = ($(this).attr('id')).split('-')[0];
+      var wod = $('#' + wodId);
+      wod.attr('style', 'position: absolute; z-index: 100000; width: 100%; height: 100%; background:rgba(189, 195, 199, 0.5)');
+     
+    });
 
 });
