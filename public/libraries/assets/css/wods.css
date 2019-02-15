@@ -111,15 +111,17 @@ font-family: 'Roboto', sans-serif;
 	border-radius: 0;
 }
 .btn-success {
-	background: linear-gradient(to left, #11998e, #38ef7d);
+	background: green;
 	border: none;
+	
+	border-radius: 0;
 }
 .btn-primary:hover {
 	background: #4169E1;
 	border: none;
 }
 .btn-success:hover {
-	background: linear-gradient(to left, #38ef7d, #11998e);
+	background: green;
 	border: none;
 }
 #return-to-top {
@@ -249,9 +251,11 @@ text-transform: uppercase;
 
 }
 footer {
-	height: 200px;
+	height: 150px;
 	background-color: #161616;
 	color: white;
+	text-align: center;
+	padding-top: 50px;
 
 }
 

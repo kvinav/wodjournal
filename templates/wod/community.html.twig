@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello{% endblock %}
+{% block title %}Communauté{% endblock %}
 
 {% block body %}
 <h1 class="title-page">Découvrez les entrainement des autres membres de la communauté</h1><br />
     {% for wod in listWods %}
         
-        <div class="col-md-3 col-sm-4">
+        <div class="col-md-3 col-sm-4" >
                 <div class="card">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
@@ -51,8 +51,8 @@
                         </li>
                        
                         <li class="list-group-item">
-                            <a href="{{ path('add_todolist', {'wodId': wod.id}) }}"><button class="btn btn-primary">Commentaires</button></a>
-                            <a href="{{ path('wod', {'name': wod.name, 'workout': wod.work, 'weights': wod.weight}) }}"><button class="btn btn-success pull-right">Quick view</button></a>
+                            <a href="{{ path('add_todolist', {'wodId': wod.id}) }}"><button class="btn btn-primary">A faire plus tard</button></a>
+                            <a><button class="btn btn-success pull-right popup"  id="{{ wod.id }}-btn">En savoir plus</button></a>
                         </li>
                     </ul>
 
