@@ -106,10 +106,9 @@ $(function() {
 
 $(".like").on('click', function() {
   var like = $(this);
-  like.attr('id', 'clicked');
   ajaxCall();
   function ajaxCall(choice){
-    console.log('ajax1');
+
     var wodId = parseInt(like.attr('data-wod'));
     $.ajax({
       url: "http://127.0.0.1:8000/journal/like",
@@ -117,12 +116,9 @@ $(".like").on('click', function() {
       data: {wodId: wodId},
       dataType : 'json',
     }).done(function(msg){
-      console.log('done1');
-      $('#clicked').addClass('unlike');
-      $('#clicked').removeClass('like');
-      $('#clicked i').removeClass('far');
-      $('#clicked i').addClass('fas');
-      $('#clicked').removeAttr('id');
+      $('.unlike.'+ wodId).show();
+      $('.like.'+ wodId).hide();
+      $('.nbLikes.'+ wodId).text(msg['data']);
 
     });
   }
@@ -130,10 +126,8 @@ $(".like").on('click', function() {
 });
 $(".unlike").on('click', function() {
   var unlike = $(this);
-  unlike.attr('id', 'clicked');
   ajaxCall2();
   function ajaxCall2(choice){
-    console.log('ajax2');
     var wodId = parseInt(unlike.attr('data-wod'));
     $.ajax({
       url: "http://127.0.0.1:8000/journal/unlike",
@@ -141,12 +135,30 @@ $(".unlike").on('click', function() {
       data: {wodId: wodId},
       dataType : 'json',
     }).done(function(msg){
-      console.log('done2');
-      $('#clicked').addClass('like');
-      $('#clicked').removeClass('unlike');
-      $('#clicked i').removeClass('fas');
-      $('#clicked i').addClass('far');
-      $('#clicked').removeAttr('id');
+      $('.unlike.'+ wodId).hide();
+      $('.like.'+ wodId).show();
+      $('.nbLikes.'+ wodId).text(msg['data']);
+
+    });
+  }
+
+});
+
+$(".todo-btn").on('click', function() {
+  var todo = $(this);
+  ajaxCall2();
+  function ajaxCall2(choice){
+    var wodId = parseInt(todo.attr('data-wod'));
+    $.ajax({
+      url: "http://127.0.0.1:8000/journal/ajout-todo",
+      method: "post",
+      data: {wodId: wodId},
+      dataType : 'json',
+    }).done(function(msg){
+      $('.todo-btn.'+ wodId).attr('disabled', 'disabled');
+      $('.todo-btn.'+ wodId +'>.btn').attr('disabled', 'disabled');
+      $('.todo-btn.'+ wodId +'>.btn').text('Présent dans ma liste');
+
 
     });
   }

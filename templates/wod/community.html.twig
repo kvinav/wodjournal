@@ -38,9 +38,13 @@
                         <li class="list-group-item">
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                                 {% if wod.liked == 1 %}
-                                <a class="unlike" data-wod="{{ wod.id }}"><i class="fas fa-thumbs-up fa-lg"></i></a>
+                                    <span class="nbLikes {{ wod.id}}">{{ wod.nbLikes }} </span>
+                                <a class="unlike {{ wod.id }}" data-wod="{{ wod.id }}"><i class="fas fa-thumbs-up fa-lg"></i></a>
+                                 <a class="like {{ wod.id }}" data-wod="{{ wod.id }}" style="display: none;"><i class="far fa-thumbs-up fa-lg"></i></a>
                                 {% else %} 
-                                <a class="like" data-wod="{{ wod.id }}"><i class="far fa-thumbs-up fa-lg"></i></a>
+                                     <span class="nbLikes {{ wod.id}}"> {{ wod.nbLikes }}</span>
+                               <a class="unlike {{ wod.id }}" data-wod="{{ wod.id }}" style="display: none;"><i class="fas fa-thumbs-up fa-lg"></i></a>
+                                 <a class="like {{ wod.id }}" data-wod="{{ wod.id }}"><i class="far fa-thumbs-up fa-lg"></i></a>
                                 {% endif %}
                            
                             <i class="far fa-comment fa-lg"></i>
@@ -51,7 +55,12 @@
                         </li>
                        
                         <li class="list-group-item">
-                            <a href="{{ path('add_todolist', {'wodId': wod.id}) }}"><button class="btn btn-primary">A faire plus tard</button></a>
+                            {% if wod.todos == 0 %}
+                                 <a class="todo-btn {{ wod.id }}"  data-wod="{{ wod.id }}"><button class="btn btn-primary">A faire plus tard</button></a>
+                                {% else %} 
+                                 <a class="todo-btn {{ wod.id }}"  data-wod="{{ wod.id }}" disabled><button class="btn btn-primary" disabled>Présent dans ma liste</button></a>
+                                {% endif %}
+                            
                             <a><button class="btn btn-success pull-right popup"  id="{{ wod.id }}-btn">En savoir plus</button></a>
                         </li>
                     </ul>

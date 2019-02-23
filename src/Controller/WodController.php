@@ -48,6 +48,18 @@ class WodController extends AbstractController
             }else{
                 $wod->liked = 1;
             }
+            $todos = $this->getDoctrine()
+            ->getRepository(Todo::class)
+            ->findBy(array('userId' => $wod->getUserId(), 'wodId' => $wod->getId()));
+            if (empty($todos)){
+                $wod->todos = 0;
+            }else{
+                $wod->todos = 1;
+            }
+            $likes = $this->getDoctrine()
+            ->getRepository(LikeWod::class)
+            ->findBy(array('wodId' => $wod->getId()));
+            $wod->nbLikes = count($likes);
         }
         
         return $this->render('wod/community.html.twig', array(
@@ -111,15 +123,19 @@ class WodController extends AbstractController
      */
     public function addWodToList(Request $request)
     {
-
-        $user = $this->getUser();
-        $todo = new Todo();
-        $em = $this->getDoctrine()->getManager();
-        $todo->setUserId($user->getId());
-        $todo->setWodId($request->query->get('wodId'));
-        $em->persist($todo);
-        $em->flush();
-        return $this->redirectToRoute('community');
+         if ($request->isXmlHttpRequest()){
+            $user = $this->getUser();
+            $wodId = $request->get('wodId');
+            $todo = new Todo();
+            $em = $this->getDoctrine()->getManager();
+            $todo->setUserId($user->getId());
+            $todo->setWodId($wodId);
+            $em->persist($todo);
+            $em->flush();
+            
+           return new JsonResponse(array('data' => 'done'));
+        }
+        return new Response("Erreur : Ce n'est pas une requête Ajax", 400);
     }
     /**
      * @Route("/journal/ma-liste", name="todo_list")
@@ -157,8 +173,12 @@ class WodController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($like);
             $em->flush();
+            $likes = $this->getDoctrine()
+                ->getRepository(LikeWod::class)
+                ->findBy(array('wodId' => $wodId));
+            $nbLikes = count($likes);
             
-           return new JsonResponse(array('data' => json_encode(serialize($like))));
+           return new JsonResponse(array('data' => $nbLikes));
         }
         return new Response("Erreur : Ce n'est pas une requête Ajax", 400);
     }
@@ -180,8 +200,12 @@ class WodController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->remove($like);
             $em->flush();
+             $likes = $this->getDoctrine()
+                ->getRepository(LikeWod::class)
+                ->findBy(array('wodId' => $wodId));
+            $nbLikes = count($likes);
             
-           return new JsonResponse(array('data' => json_encode('done')));
+           return new JsonResponse(array('data' => $nbLikes));
         }
         return new Response("Erreur : Ce n'est pas une requête Ajax", 400);
     }
