@@ -13,7 +13,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/mywodjournal/public/index.php",
+  "start_url": "/mywodjournal/public/index.php/communaute",
   "background_color": "#fff",
   "display": "fullscreen",
   "scope": "/mywodjournal/public/index.php",

@@ -4,6 +4,22 @@
 
 {% block body %}
 <h1 class="title-page">Découvrez les entrainement des autres membres de la communauté</h1><br />
+<div class="modal">
+    <div class="modal-overlay modal-toggle"></div>
+    <div class="modal-wrapper modal-transition">
+      <div class="modal-header">
+        <button class="modal-close modal-toggle"><svg class="icon-close icon" viewBox="0 0 32 32"><use xlink:href="#icon-close"></use></svg></button>
+        <h2 class="modal-heading">Vous n'êtes pas connecté !</h2>
+        <p>Suivez ce lien pour vous connecter et intéragir avec les autres sportifs de la communauté </p><a href="{{ path('security_login') }}"><button class="btn btn-primary pull-right">Je me connecte</button></a>
+      </div>
+      <div class="modal-header">
+        <button class="modal-close modal-toggle"><svg class="icon-close icon" viewBox="0 0 32 32"><use xlink:href="#icon-close"></use></svg></button>
+        <h2 class="modal-heading">Vous n'êtes pas encore inscrit ?</h2>
+        <p>Suivez ce lien pour vous inscrire et commencer à partager vos entrainements avec les autres sportifs de la communauté</p> <a href="{{ path('user_registration') }}"><button class="btn btn-success pull-right">Je m'inscris</button></a>
+      </div>
+      
+    </div>
+  </div>
     {% for wod in listWods %}
         
         <div class="col-md-3 col-sm-4" >
@@ -11,7 +27,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <h2 class="text-light display-6">  {{ wod.name|upper }}</h2>
-                                <p><i style="color: #333;">effectué par <span>{{ wod.username|upper }}</span> le <span>{{ wod.date }}</span></p></i>
+                                <p><i style="color: #333;">Par <span style="text-decoration: underline;">{{ wod.username|upper }}</span> le <span style="text-decoration: underline;">{{ wod.date }}</span></p></i>
                         </li>
                     
                            <li class="list-group-item">
@@ -49,19 +65,26 @@
                            
                             <i class="far fa-comment fa-lg"></i>
                             {% else %}
-                            <i class="far fa-thumbs-up fa-lg" id="likeNotRegistered"></i>
-                            <i class="far fa-comment fa-lg"></i>
+                            <span class="nbLikes {{ wod.id}}">{{ wod.nbLikes }} </span>
+                            <a class="modal-toggle"><i class="far fa-thumbs-up fa-lg"></i></a>
+                            <a class="modal-toggle"><i class="far fa-comment fa-lg"></i></a>
                             {% endif %}
                         </li>
                        
                         <li class="list-group-item">
+                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                             {% if wod.todos == 0 %}
                                  <a class="todo-btn {{ wod.id }}"  data-wod="{{ wod.id }}"><button class="btn btn-primary">A faire plus tard</button></a>
                                 {% else %} 
-                                 <a class="todo-btn {{ wod.id }}"  data-wod="{{ wod.id }}" disabled><button class="btn btn-primary" disabled>Présent dans ma liste</button></a>
+                                 <a class="todo-btn {{ wod.id }}"  data-wod="{{ wod.id }}" disabled><button class="btn btn-primary" disabled>Dans ma liste</button></a>
                                 {% endif %}
                             
-                            <a><button class="btn btn-success pull-right popup"  id="{{ wod.id }}-btn">En savoir plus</button></a>
+                            <a href="{{ path('display_wod', {'id': wod.id}) }}"><button class="btn btn-success pull-right"  id="{{ wod.id }}-btn">En savoir plus</button></a>
+                         {% else %}
+                              <a class="modal-toggle"><button class="btn btn-primary">A faire plus tard</button></a>
+                            
+                            <a  class="modal-toggle"><button class="btn btn-success pull-right">En savoir plus</button></a>
+                          {% endif %}
                         </li>
                     </ul>
 

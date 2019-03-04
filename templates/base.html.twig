@@ -23,12 +23,13 @@
      <link rel="stylesheet" href="{{ asset('selectric/public/selectric.css') }}">
     
 <link href="{{ asset('libraries/assets/css/wods.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="{{ asset('node_modules/bootstrap-duration-picker/src/bootstrap-duration-picker.css') }}">
+
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
 </head>
 <body>
-
-
 <!-- Left Panel -->
 <a href="javascript:" id="return-to-top"><i class="fa fa-arrow-up"></i></a>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -98,42 +99,9 @@
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
-  <script id="scriptCK"></script>
-<script id="scriptCKJQ"></script>
-  <script>
-  var isMobile = {
-    Android: function() {
-        return navigator.userAgent.match(/Android/i);
-    },
-    BlackBerry: function() {
-        return navigator.userAgent.match(/BlackBerry/i);
-    },
-    iOS: function() {
-        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-    },
-    Opera: function() {
-        return navigator.userAgent.match(/Opera Mini/i);
-    },
-    Windows: function() {
-        return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
-    },
-    any: function() {
-        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-    }
-};
-if( isMobile.any() ){
-  document.getElementById('scriptCK').setAttribute('src', "{{ asset('ckeditormobile/ckeditor.js') }}");
-  document.getElementById('scriptCK').setAttribute('type', "text/javascript");
-  document.getElementById('scriptCKJQ').setAttribute('src', "{{ asset('ckeditormobile/adapters/jquery.js') }}");
-  document.getElementById('scriptCKJQ').setAttribute('type', "text/javascript");
-}else{
-  document.getElementById('scriptCK').setAttribute('src', "{{ asset('ckeditor/ckeditor.js') }}");
-  document.getElementById('scriptCK').setAttribute('type', "text/javascript");
-  document.getElementById('scriptCKJQ').setAttribute('src', "{{ asset('ckeditor/adapters/jquery.js') }}");
-  document.getElementById('scriptCKJQ').setAttribute('type', "text/javascript");
+<script src="{{ asset('ckeditormobile/adapters/jquery.js') }}"></script>
+<script src="{{ asset('ckeditormobile/ckeditor.js') }}"></script>
 
-}
-</script>
 <script src="{{ asset('libraries/assets/js/main.js') }}"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script
@@ -141,17 +109,25 @@ if( isMobile.any() ){
   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
  <script src="{{ asset('selectric/public/jquery.selectric.min.js') }}"></script> 
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
+<script rel="stylesheet" src="{{ asset('node_modules/bootstrap-duration-picker/src/bootstrap-duration-picker.js') }}"></script>
   {% if app.request.get('_route') == 'wod' %}
    <script>
-
-                
-        CKEDITOR.replace( 'wod[work]' );
+document.addEventListener('DOMContentLoaded', function(){ 
+    // your code goes here
+    CKEDITOR.replace( 'wod[work]' );
      CKEDITOR.replace( 'wod[comment]' );
       CKEDITOR.replace( 'wod[weight]' );
       var work = document.getElementById('workout_value').innerHTML;
       var weights = document.getElementById('weights_value').innerHTML;
     CKEDITOR.instances['wod_work'].setData(work);
     CKEDITOR.instances['wod_weight'].setData(weights);
+}, false);
+                
+        
     </script>
   {% endif %}
 <!-- Global site tag (gtag.js) - Google Analytics -->

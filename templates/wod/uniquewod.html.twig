@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Communauté{% endblock %}
+
+{% block body %}
+<h1 class="title-page"></h1><br />
+        
+        <div class="col-12 card_unique" >
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h2 class="text-light display-6">{{ wod.name|upper }}</h2>
+                                <p><i style="color: #333;">effectué par <span>{{ wod.username|upper }}</span> le <span>{{ wod.date }}</span></p></i>
+                        </li>
+                    
+                           <li class="list-group-item">
+                            <p class="title-list-group-item">Temps:</p> 
+                            <p class="content-list-group-item">{{ wod.time }}</p>
+                        </li>
+                      
+                        
+                        <li class="list-group-item">
+                            <p class="title-list-group-item">Workout:</p>
+                            <div class="content-list-group-item">{{ wod.work|raw }}</div>
+                        </li>
+                      
+                            <li class="list-group-item">
+                            <p class="title-list-group-item">Poids utilisés:</p>
+                            <div class="content-list-group-item">{{ wod.weight|raw }}</div>
+                        </li>
+                       
+                            
+                        <li class="list-group-item">
+                            <p class="title-list-group-item">Commentaire:</p>
+                            <div class="content-list-group-item">{{ wod.comment|raw }}</div>
+                        </li>
+                        <li class="list-group-item">
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                {% if wod.liked == 1 %}
+                                    <span class="nbLikes {{ wod.id}}">{{ wod.nbLikes }} </span>
+                                <a class="unlike {{ wod.id }}" data-wod="{{ wod.id }}"><i class="fas fa-thumbs-up fa-lg"></i></a>
+                                 <a class="like {{ wod.id }}" data-wod="{{ wod.id }}" style="display: none;"><i class="far fa-thumbs-up fa-lg"></i></a>
+                                {% else %} 
+                                     <span class="nbLikes {{ wod.id}}"> {{ wod.nbLikes }}</span>
+                               <a class="unlike {{ wod.id }}" data-wod="{{ wod.id }}" style="display: none;"><i class="fas fa-thumbs-up fa-lg"></i></a>
+                                 <a class="like {{ wod.id }}" data-wod="{{ wod.id }}"><i class="far fa-thumbs-up fa-lg"></i></a>
+                                {% endif %}
+                           
+                            <i class="far fa-comment fa-lg"></i>
+                            {% else %}
+                            <i class="far fa-thumbs-up fa-lg" id="likeNotRegistered"></i>
+                            <i class="far fa-comment fa-lg"></i>
+                            {% endif %}
+                        </li>
+                       
+                        <li class="list-group-item" style="text-align: center;">
+                            {% if wod.todos == 0 %}
+                                 <a class="todo-btn {{ wod.id }}"  data-wod="{{ wod.id }}"><button class="btn btn-primary">A faire plus tard</button></a>
+                                {% else %} 
+                                 <a class="todo-btn {{ wod.id }}"  data-wod="{{ wod.id }}" disabled><button class="btn btn-primary" disabled>Dans ma liste</button></a>
+                                {% endif %}
+                        </li>
+                    </ul>
+
+                </div>
+        </div>
+
+
+{% endblock %}

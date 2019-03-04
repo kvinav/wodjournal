@@ -9,7 +9,34 @@ jQuery(document).ready(function($) {
 	} );
 
 	jQuery('.selectpicker').selectpicker;
+  
+  
+  flatpickr($(".datepicker"), {
+    "locale": "fr",
+    altInput: true,
+    altFormat: "j F Y",
+    dateFormat: "d/m/Y",  // locale for this instance only
+  });
 
+  $('.duration-picker').durationPicker({
+    
+    // optional object with translations (English is used by default)
+    translations: {
+        day: 'jour',
+        hour: 'heure',
+        minute: 'minute',
+        second: 'seconde',
+        days: 'jours',
+        hours: 'heures',
+        minutes: 'minutes',
+        seconds: 'secondes',
+    },
+
+    // defines whether to show seconds or not
+    showSeconds: true,
+
+  });
+    
 
 	$('#menuToggle').on('click', function(event) {
 		$('body').toggleClass('open');
@@ -111,7 +138,7 @@ $(".like").on('click', function() {
 
     var wodId = parseInt(like.attr('data-wod'));
     $.ajax({
-      url: "http://127.0.0.1:8000/journal/like",
+      url: "http://avignonkevin.com/mywodjournal/public/index.php/journal/like",
       method: "post",
       data: {wodId: wodId},
       dataType : 'json',
@@ -130,7 +157,7 @@ $(".unlike").on('click', function() {
   function ajaxCall2(choice){
     var wodId = parseInt(unlike.attr('data-wod'));
     $.ajax({
-      url: "http://127.0.0.1:8000/journal/unlike",
+      url: "http://avignonkevin.com/mywodjournal/public/index.php/journal/unlike",
       method: "post",
       data: {wodId: wodId},
       dataType : 'json',
@@ -150,25 +177,31 @@ $(".todo-btn").on('click', function() {
   function ajaxCall2(choice){
     var wodId = parseInt(todo.attr('data-wod'));
     $.ajax({
-      url: "http://127.0.0.1:8000/journal/ajout-todo",
+      url: "http://avignonkevin.com/mywodjournal/public/index.php/journal/ajout-todo",
       method: "post",
       data: {wodId: wodId},
       dataType : 'json',
     }).done(function(msg){
       $('.todo-btn.'+ wodId).attr('disabled', 'disabled');
       $('.todo-btn.'+ wodId +'>.btn').attr('disabled', 'disabled');
-      $('.todo-btn.'+ wodId +'>.btn').text('Présent dans ma liste');
+      $('.todo-btn.'+ wodId +'>.btn').text('Dans ma liste');
 
 
     });
   }
 
 });
+$('.modal-toggle').on('click', function(e) {
+  e.preventDefault();
+  $('.modal').toggleClass('is-visible');
+});
+
 
 $("#btn-homepage").on('click', function() {
 	window.location.href = window.location.pathname = '/inscription?email=' + $('#input-email-homepage').val();
 
 });
+
    
 
 });

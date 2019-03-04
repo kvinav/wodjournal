@@ -67,6 +67,39 @@ class WodController extends AbstractController
         ));
     }
     /**
+     * @Route("/entrainement", name="display_wod")
+     */
+    public function displayWod(Request $request)
+    {
+        $wod = $this->getDoctrine()
+            ->getRepository(Wod::class)
+            ->find($request->query->get('id'));
+         $liked = $this->getDoctrine()
+            ->getRepository(LikeWod::class)
+            ->findBy(array('userId' => $wod->getUserId(), 'wodId' => $wod->getId()));
+            if (empty($liked)){
+                $wod->liked = 0;
+            }else{
+                $wod->liked = 1;
+            }
+            $todos = $this->getDoctrine()
+            ->getRepository(Todo::class)
+            ->findBy(array('userId' => $wod->getUserId(), 'wodId' => $wod->getId()));
+            if (empty($todos)){
+                $wod->todos = 0;
+            }else{
+                $wod->todos = 1;
+            }
+            $likes = $this->getDoctrine()
+            ->getRepository(LikeWod::class)
+            ->findBy(array('wodId' => $wod->getId()));
+            $wod->nbLikes = count($likes);
+        
+        return $this->render('wod/uniquewod.html.twig', array(
+            'wod' => $wod,
+        ));
+    }
+    /**
      * @Route("/journal/ajout-wod", name="wod")
      */
     public function addWod(Request $request)
@@ -77,10 +110,19 @@ class WodController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($request->request->get('wodId')) {
+                $todo = $this->getDoctrine()
+                    ->getRepository(Todo::class)
+                    ->findBy(array('wodId' => intval($request->request->get('wodId'))));
+                $em->remove($todo[0]);
+                $em->flush();
+            }
             $user = $this->getUser();
             $id = $user->getId();
             $username = $user->getUsername();
             $wod = $form->getData();
+            $timeFormatted = gmdate("H:i:s", intval($wod->getTime()));
+            $wod->setTime($timeFormatted);
             $wod->setUsername($username);
             $wod->setUserId($id);
             $em->persist($wod);
