@@ -109,9 +109,33 @@ class WodController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(WodType::class, $wod);
         $form->handleRequest($request);
+        if ($request->query->get('action') === 'modify') {
+            $wod = $this->getDoctrine()
+                    ->getRepository(Wod::class)
+                    ->find($request->query->get('id'));
+            $formattedTime = $this->seconds_from_time($wod->getTime());
 
+        }else{
+            $formattedTime = '';
+
+        }
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($request->request->get('wodId')) {
+            if ($request->request->get('wodId') && $request->request->get('action') === 'modify') {
+                $wodToModify = $this->getDoctrine()
+                    ->getRepository(Wod::class)
+                    ->find($request->request->get('wodId'));
+                $wodToModify->setName($form->getData()->getName());
+                $wodToModify->setWork($form->getData()->getWork());
+                $wodToModify->setWeight($form->getData()->getWeight());
+                $wodToModify->setDate($form->getData()->getDate());
+                $timeFormatted = gmdate("H:i:s", intval($form->getData()->getTime()));
+                $wodToModify->setTime($timeFormatted);
+                $wodToModify->setComment($form->getData()->getComment());
+                $em->persist($wodToModify);
+                $em->flush();
+
+                return $this->redirectToRoute('wods_list');
+            }else if ($request->request->get('wodId') && !$request->request->get('action')) {
                 $todo = $this->getDoctrine()
                     ->getRepository(Todo::class)
                     ->findBy(array('wodId' => intval($request->request->get('wodId'))));
@@ -133,6 +157,7 @@ class WodController extends AbstractController
         }
         return $this->render('wod/addwod.html.twig', [
             'form' => $form->createView(),
+            'formattedTime' => $formattedTime,
         ]);
     }
     /**
@@ -251,5 +276,9 @@ class WodController extends AbstractController
            return new JsonResponse(array('data' => $nbLikes));
         }
         return new Response("Erreur : Ce n'est pas une requête Ajax", 400);
+    }
+    public function seconds_from_time($time) {
+        list($h, $m, $s) = explode(':', $time);
+        return ($h * 3600) + ($m * 60) + $s;
     }
 }

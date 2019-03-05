@@ -51,6 +51,9 @@
                             {{ wod.comment|striptags|truncate(50, true)|raw|nl2br }}</div>
                         </li>
                       
+                        <li class="list-group-item">
+                                <a href="{{ path('wod', {'name': wod.name, 'workout': wod.work, 'weights': wod.weight,  'time': wod.time,  'date': wod.date, 'comment': wod.comment, 'id': wod.id, 'action': 'modify' }) }}"><button class="btn btn-success">Modifier</button></a>
+                        </li>
                         
 
                     </ul>

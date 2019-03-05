@@ -123,8 +123,10 @@ document.addEventListener('DOMContentLoaded', function(){
       CKEDITOR.replace( 'wod[weight]' );
       var work = document.getElementById('workout_value').innerHTML;
       var weights = document.getElementById('weights_value').innerHTML;
+      var weights = document.getElementById('comment_value').innerHTML;
     CKEDITOR.instances['wod_work'].setData(work);
     CKEDITOR.instances['wod_weight'].setData(weights);
+    CKEDITOR.instances['wod_comment'].setData(weights);
 }, false);
                 
         
