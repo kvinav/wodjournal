@@ -74,9 +74,11 @@ class WodController extends AbstractController
         $wod = $this->getDoctrine()
             ->getRepository(Wod::class)
             ->find($request->query->get('id'));
+        $user = $this->getUser();
+        $id = $user->getId();
          $liked = $this->getDoctrine()
             ->getRepository(LikeWod::class)
-            ->findBy(array('userId' => $wod->getUserId(), 'wodId' => $wod->getId()));
+            ->findBy(array('userId' => $id, 'wodId' => $wod->getId()));
             if (empty($liked)){
                 $wod->liked = 0;
             }else{
@@ -84,7 +86,7 @@ class WodController extends AbstractController
             }
             $todos = $this->getDoctrine()
             ->getRepository(Todo::class)
-            ->findBy(array('userId' => $wod->getUserId(), 'wodId' => $wod->getId()));
+            ->findBy(array('userId' => $id, 'wodId' => $wod->getId()));
             if (empty($todos)){
                 $wod->todos = 0;
             }else{
@@ -94,7 +96,6 @@ class WodController extends AbstractController
             ->getRepository(LikeWod::class)
             ->findBy(array('wodId' => $wod->getId()));
             $wod->nbLikes = count($likes);
-        
         return $this->render('wod/uniquewod.html.twig', array(
             'wod' => $wod,
         ));
