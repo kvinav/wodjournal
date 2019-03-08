@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Todo;
 use App\Entity\LikeWod;
 use App\Entity\Wod;
+use App\Entity\Comment;
 use App\Form\WodType;
+use App\Form\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,29 +40,52 @@ class WodController extends AbstractController
         $listWods = $this->getDoctrine()
             ->getRepository(Wod::class)
             ->findBy(array(), array('id' => 'desc'));
+        $user = $this->getUser();
+        if ($user) {
+            $id = $user->getId();
 
-        foreach ($listWods as $wod) {
-            $liked = $this->getDoctrine()
-            ->getRepository(LikeWod::class)
-            ->findBy(array('userId' => $wod->getUserId(), 'wodId' => $wod->getId()));
-            if (empty($liked)){
+            foreach ($listWods as $wod) {
+                $liked = $this->getDoctrine()
+                ->getRepository(LikeWod::class)
+                ->findBy(array('userId' => $id, 'wodId' => $wod->getId()));
+                if (empty($liked)){
+                    $wod->liked = 0;
+                }else{
+                    $wod->liked = 1;
+                }
+                $todos = $this->getDoctrine()
+                ->getRepository(Todo::class)
+                ->findBy(array('userId' => $id, 'wodId' => $wod->getId()));
+                if (empty($todos)){
+                    $wod->todos = 0;
+                }else{
+                    $wod->todos = 1;
+                }
+                $likes = $this->getDoctrine()
+                ->getRepository(LikeWod::class)
+                ->findBy(array('wodId' => $wod->getId()));
+                $wod->nbLikes = count($likes);
+                $comments = $this->getDoctrine()
+                ->getRepository(Comment::class)
+                ->findBy(array('wodId' => $wod->getId()));
+                $wod->nbComments = count($comments);
+            }
+        }else {
+            foreach ($listWods as $wod) {
                 $wod->liked = 0;
-            }else{
-                $wod->liked = 1;
-            }
-            $todos = $this->getDoctrine()
-            ->getRepository(Todo::class)
-            ->findBy(array('userId' => $wod->getUserId(), 'wodId' => $wod->getId()));
-            if (empty($todos)){
                 $wod->todos = 0;
-            }else{
-                $wod->todos = 1;
+                $likes = $this->getDoctrine()
+                ->getRepository(LikeWod::class)
+                ->findBy(array('wodId' => $wod->getId()));
+                $wod->nbLikes = count($likes);
+                $comments = $this->getDoctrine()
+                ->getRepository(Comment::class)
+                ->findBy(array('wodId' => $wod->getId()));
+                $wod->nbComments = count($comments);
             }
-            $likes = $this->getDoctrine()
-            ->getRepository(LikeWod::class)
-            ->findBy(array('wodId' => $wod->getId()));
-            $wod->nbLikes = count($likes);
+
         }
+        
         
         return $this->render('wod/community.html.twig', array(
             'listWods' => $listWods,
@@ -71,11 +96,22 @@ class WodController extends AbstractController
      */
     public function displayWod(Request $request)
     {
+        $comment = new Comment();
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
         $wod = $this->getDoctrine()
             ->getRepository(Wod::class)
             ->find($request->query->get('id'));
         $user = $this->getUser();
         $id = $user->getId();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $date = new \DateTime();
+            $dateFormatted = $date->format('d/m/Y');
+            $comment->setDate($dateFormatted);
+            $em->persist($comment);
+            $em->flush();
+        }
          $liked = $this->getDoctrine()
             ->getRepository(LikeWod::class)
             ->findBy(array('userId' => $id, 'wodId' => $wod->getId()));
@@ -96,8 +132,14 @@ class WodController extends AbstractController
             ->getRepository(LikeWod::class)
             ->findBy(array('wodId' => $wod->getId()));
             $wod->nbLikes = count($likes);
+            $comments = $this->getDoctrine()
+            ->getRepository(Comment::class)
+            ->findBy(array('wodId' => $wod->getId()));
+            $wod->nbComments = count($comments);
         return $this->render('wod/uniquewod.html.twig', array(
             'wod' => $wod,
+            'comments' => $comments,
+            'form' => $form->createView(),
         ));
     }
     /**

@@ -38,18 +38,18 @@
                         
                         <li class="list-group-item">
                             <p class="title-list-group-item">Workout:</p>
-                            <div class="content-list-group-item">{{ wod.work|striptags|truncate(100, true)|raw|nl2br }}</div>
+                            <p class="content-list-group-item">{{ wod.work|striptags|truncate(100, true)|raw|nl2br }}</p>
                         </li>
                       
                             <li class="list-group-item">
                             <p class="title-list-group-item">Poids utilisés:</p>
-                            <div class="content-list-group-item">{{ wod.weight|striptags|truncate(100, true)|raw|nl2br }}</div>
+                            <p class="content-list-group-item">{{ wod.weight|striptags|truncate(100, true)|raw|nl2br }}</p>
                         </li>
                        
                             
                         <li class="list-group-item">
                             <p class="title-list-group-item">Commentaire:</p>
-                            <div class="content-list-group-item">{{ wod.comment|striptags|truncate(100, true)|raw|nl2br }}</div>
+                            <p class="content-list-group-item">{{ wod.comment|striptags|truncate(100, true)|raw|nl2br }}</p>
                         </li>
                         <li class="list-group-item">
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -62,11 +62,13 @@
                                <a class="unlike {{ wod.id }}" data-wod="{{ wod.id }}" style="display: none;"><i class="fas fa-thumbs-up fa-lg"></i></a>
                                  <a class="like {{ wod.id }}" data-wod="{{ wod.id }}"><i class="far fa-thumbs-up fa-lg"></i></a>
                                 {% endif %}
-                           
+                            <span class="nbComments {{ wod.id}}">{{ wod.nbComments }} </span>
                             <i class="far fa-comment fa-lg"></i>
                             {% else %}
                             <span class="nbLikes {{ wod.id}}">{{ wod.nbLikes }} </span>
+
                             <a class="modal-toggle"><i class="far fa-thumbs-up fa-lg"></i></a>
+                             <span class="nbComments {{ wod.id}}">{{ wod.nbComments }} </span>
                             <a class="modal-toggle"><i class="far fa-comment fa-lg"></i></a>
                             {% endif %}
                         </li>

@@ -36,24 +36,27 @@
                             <p class="title-list-group-item">Temps:  {{ wod.time }} </p></li>
                     
                         <li class="list-group-item">
-                        <p class="title-list-group-item">Workout:</p><div class="content-list-group-item">
-                            {{ wod.work|striptags|truncate(100, true)|raw|nl2br }}</div>
+                        <p class="title-list-group-item">Workout:</p><p class="content-list-group-item">
+                            {{ wod.work|striptags|truncate(100, true)|raw|nl2br }}</p>
 
                         </li>
                        
                              <li class="list-group-item">
-                        <p class="title-list-group-item">Poids utilisés:</p><div class="content-list-group-item">
-                            {{ wod.weight|striptags|truncate(50, true)|raw|nl2br }}</div>
+                        <p class="title-list-group-item">Poids utilisés:</p><p class="content-list-group-item">
+                            {{ wod.weight|striptags|truncate(50, true)|raw|nl2br }}</p>
                         </li>
                        
                             <li class="list-group-item">
-                        <p class="title-list-group-item">Commentaire:</p><div class="content-list-group-item">
-                            {{ wod.comment|striptags|truncate(50, true)|raw|nl2br }}</div>
+                        <p class="title-list-group-item">Commentaire:</p><p class="content-list-group-item">
+                            {{ wod.comment|striptags|truncate(50, true)|raw|nl2br }}</p>
                         </li>
                       
                         <li class="list-group-item">
                                 <a href="{{ path('wod', {'name': wod.name, 'workout': wod.work, 'weights': wod.weight,  'time': wod.time,  'date': wod.date, 'comment': wod.comment, 'id': wod.id, 'action': 'modify' }) }}"><button class="btn btn-success">Modifier</button></a>
+                                <a href="{{ path('display_wod', {'id': wod.id}) }}"><button class="btn btn-primary pull-right"  id="{{ wod.id }}-btn">En savoir plus</button></a>
                         </li>
+
+
                         
 
                     </ul>
@@ -98,7 +101,9 @@
                     
                         <li class="list-group-item">
                                 <a href="{{ path('wod', {'name': wodTodo.name, 'workout': wodTodo.work, 'weights': wodTodo.weight, 'id': wodTodo.id }) }}"><button class="btn btn-success">J'ai fait ce WOD</button></a>
+                                <a href="{{ path('display_wod', {'id': wodTodo.id}) }}"><button class="btn btn-primary pull-right"  id="{{ wodTodo.id }}-btn">En savoir plus</button></a>
                         </li>
+                        
                         
 
                     </ul>
