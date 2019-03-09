@@ -52,6 +52,13 @@ class User implements UserInterface, \Serializable
      *
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 30,
+     *      minMessage = "Votre nom/prénom est trop court",
+     *      maxMessage = "Votre nom/prénom est trop long"
+     * )
+     * @Assert\Regex("/^([^0-9]+)[ ]([^0-9]+$)/", message="Vous devez entrer au moins un nom et un prénom")
      */
     private $fullName;
 
@@ -60,6 +67,12 @@ class User implements UserInterface, \Serializable
      *
      * @ORM\Column(type="string", unique=true)
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 15,
+     *      minMessage = "Le pseudo est trop court",
+     *      maxMessage = "Le pseudo est trop long"
+     * )
      */
     private $username;
 
@@ -67,7 +80,9 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(type="string", unique=true)
-     * @Assert\Email()
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
      */
     private $email;
 

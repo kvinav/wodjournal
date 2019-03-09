@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\WodRepository")
+ * 
  */
 class Wod
 {
@@ -18,6 +20,13 @@ class Wod
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 30,
+     *      minMessage = "Le nom est trop court",
+     *      maxMessage = "Le nom est trop long"
+     * )
      */
     private $name;
 
