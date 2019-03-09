@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout de wod{% endblock %}
+
+{% block body %}
+    <div class="container stopwatch-container">
+    	<div class="col-12">
+		<nav class="controls">
+			<a href="#" class="button" onClick="stopwatch.start();"><i class="fas fa-play fa-2x"></i></a>
+			<a href="#" class="button" onClick="stopwatch.stop();"><i class="fas fa-stop fa-2x"></i></a>
+			<a href="#" class="button" onClick="stopwatch.restart();"><i class="fas fa-undo fa-2x"></i></a>
+		</nav>
+	</div>
+		<div class="stopwatch"></div>
+		<ul class="results"></ul>
+		<form action="{{ path('wod', {'chrono': 'oui'}) }}" method="post" style="text-align: center;">
+			<input type="hidden" name="timeStopwatch" class="inputStopwatch" value="">
+			<button type="submit" class="btn btn-primary">Enregistrer mon WOD</button>
+		</form>
+
+	</div>
+{% endblock %}

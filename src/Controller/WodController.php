@@ -24,7 +24,13 @@ class WodController extends AbstractController
     {
         return $this->render('wod/index.html.twig');
     }
-
+    /**
+     * @Route("/chronometre", name="stopwatch")
+     */
+    public function stopwatch()
+    {
+        return $this->render('wod/stopwatch.html.twig');
+    }
     /**
      * @Route("/mentions-legales", name="legalMentions")
      */
@@ -151,7 +157,10 @@ class WodController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(WodType::class, $wod);
         $form->handleRequest($request);
-        if ($request->query->get('action') === 'modify') {
+        if ($request->query->get('chrono') === 'oui' && $request->request->get('timeStopwatch')) {
+            $time = '00:' . explode(':', $request->request->get('timeStopwatch'))[0] . ':' . explode(':', $request->request->get('timeStopwatch'))[1];
+            $formattedTime = $this->seconds_from_time($time);
+        }else if ($request->query->get('action') === 'modify') {
             $wod = $this->getDoctrine()
                     ->getRepository(Wod::class)
                     ->find($request->query->get('id'));

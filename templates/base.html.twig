@@ -57,11 +57,12 @@
             <li {% if app.request.get('_route') == 'security_logout' %} class="active" {% endif %}><a href="{{ path('security_logout') }}"> Se déconnecter</a></li>
         </ul>
       </li>
-      
+      <li {% if app.request.get('_route') == 'stopwatch' %} class="active" {% endif %}><a href="{{ path('stopwatch') }}"><i class="fas fa-stopwatch fa-lg" style="color: white;"></i></a></li>
       
         {% else %}
         <li> <a href="{{ path('security_login') }}">Se connecter</a></li>
         {% endif %}
+        
         
     </ul>
     </div><!--/.nav-collapse -->
@@ -103,6 +104,9 @@
 <script src="{{ asset('ckeditormobile/ckeditor.js') }}"></script>
 
 <script src="{{ asset('libraries/assets/js/main.js') }}"></script>
+{% if app.request.get('_route') == 'stopwatch' %}
+   <script src="{{ asset('libraries/assets/js/stopwatch.js') }}"></script>
+{% endif %}
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script
   src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"

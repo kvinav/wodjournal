@@ -58,6 +58,7 @@ font-family: 'Roboto', sans-serif;
 }
 .list-group-item .content-list-group-item {
 	padding-left: 2%;
+	overflow: hidden;
 }
 
 .navbar {
@@ -443,6 +444,50 @@ footer {
 .modal-content > *:last-child {
   margin-bottom: 0;
 }
+/* STOPWATCH */
+.controls {
+  margin-top: 200px;
+  text-align: center;
+  width: 100%;
+}
 
+.button {
+  color: #bbb;
+  font-size: 4vw;
+  margin: 0 0.5em;
+  text-decoration: none;
+}
+
+.button:first-child {
+    margin-left: 0;
+}
+
+.button:last-child {
+    margin-right: 0;
+}
+
+.button:hover {
+  color: white;
+}
+
+.stopwatch {
+  font-size: 20vw;
+  height: 100%;
+  text-align: center;
+}
+
+.results {
+  border-color: lime;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.stopwatch-container {
+	margin-bottom: 200px;
+}
 /* Extra Things */
 body{background: #eee ;font-family: 'Open Sans', sans-serif;}h3{font-size: 30px; font-weight: 400;text-align: center;margin-top: 50px;}h3 i{color: #444;}
